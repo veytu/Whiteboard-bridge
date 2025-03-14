@@ -9,6 +9,7 @@ import {videoPlugin2} from "@netless/white-video-plugin2";
 import {audioPlugin2} from "@netless/white-audio-plugin2";
 import {videoJsPlugin} from "@netless/video-js-plugin";
 import SlideApp, { addHooks as addHooksSlide, usePlugin}  from "@netless/app-slide";
+import Talkative from '@netless/app-talkative'
 import { EffectPlugin, MixingPlugin } from '@netless/slide-rtc-plugin';
 import { MountParams, WindowManager } from "@netless/window-manager";
 import { SyncedStorePlugin } from "@netless/synced-store";
@@ -196,6 +197,13 @@ class SDKBridge {
                 return SlideApp;
             },
         });
+        WindowManager.register({
+            kind: 'Talkative',
+            src: Talkative,
+            appOptions: {
+              debug: false,
+            },
+          });
         for (const v of window.appRegisterParams || []) {
             WindowManager.register({
                 kind: v.kind,

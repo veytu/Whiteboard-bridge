@@ -1139,6 +1139,10 @@
   version "0.2.65"
   resolved "https://codeload.github.com/veytu/app-slide/tar.gz/77f50b5552e0c787e857ed3b19078cc466554b66"
 
+"@netless/app-talkative@github:veytu/app-talkative.git":
+  version "0.1.2"
+  resolved "https://codeload.github.com/veytu/app-talkative/tar.gz/b542cbbcbd83cd0bd40b38034a2465fd88f16419"
+
 "@netless/appliance-plugin@^1.1.11":
   version "1.1.11"
   resolved "https://registry.yarnpkg.com/@netless/appliance-plugin/-/appliance-plugin-1.1.11.tgz#ae831a57ddfa469b2d0ef3ac289eedb30f8292e2"
