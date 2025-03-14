@@ -1,6 +1,6 @@
 import { hookCreateElement } from '../utils/ImgError';
 import {CursorTool} from "@netless/cursor-tool";
-import { registerAsyn } from '.';
+import { asyncCall, call, registerAsyn } from '.';
 import { NativeSDKConfig, NativeJoinRoomParams, NativeReplayParams, AppRegisterParams, NativeSlideAppOptions } from "@netless/whiteboard-bridge-types";
 import {WhiteWebSdk, Room, Player, createPlugins, PlayerPhase, setAsyncModuleLoadMode, AsyncModuleLoadMode} from "white-web-sdk";
 import {videoPlugin} from "@netless/white-video-plugin";
@@ -9,10 +9,12 @@ import {videoPlugin2} from "@netless/white-video-plugin2";
 import {audioPlugin2} from "@netless/white-audio-plugin2";
 import {videoJsPlugin} from "@netless/video-js-plugin";
 import SlideApp, { addHooks as addHooksSlide, usePlugin}  from "@netless/app-slide";
+import Talkative from '@netless/app-talkative'
 import { EffectPlugin, MixingPlugin } from '@netless/slide-rtc-plugin';
 import { MountParams, WindowManager } from "@netless/window-manager";
 import { SyncedStorePlugin } from "@netless/synced-store";
 import {IframeBridge, IframeWrapper} from "@netless/iframe-bridge";
+import AppIframeBridge from '@netless/app-iframe-bridge';
 import {logger, enableReport} from "../utils/Logger";
 import {convertBound} from "../utils/BoundConvert";
 import { addManagerListener } from "./Manager";
@@ -32,6 +34,8 @@ import { prepare } from '@netless/white-prepare';
 import { ApplianceMultiPlugin } from '@netless/appliance-plugin';
 import fullWorkerString from '@netless/appliance-plugin/dist/fullWorker.js?raw';
 import subWorkerString from '@netless/appliance-plugin/dist/subWorker.js?raw';
+
+import { PCMProxy } from '../PCMProxy';
 const fullWorkerBlob = new Blob([fullWorkerString], { type: 'text/javascript' });
 const fullWorkerUrl = URL.createObjectURL(fullWorkerBlob);
 const subWorkerBlob = new Blob([subWorkerString], { type: 'text/javascript' });
@@ -89,12 +93,13 @@ function removeBind() {
 }
 
 async function mountWindowManager(room: Room, handler: RoomCallbackHandler | ReplayerCallbackHandler, windowParams?: Omit<Omit<MountParams, "room">, "container"> | undefined) {
+    const enableAppliancePlugin = true
     const manager = await WindowManager.mount({
         // 高比宽
         containerSizeRatio: 9/16,
         chessboard: true,
         cursor: !!cursorAdapter,
-        supportAppliancePlugin: nativeConfig?.enableAppliancePlugin,
+        supportAppliancePlugin: enableAppliancePlugin,
         ...windowParams,
         container: divRef(),
         room,
@@ -115,14 +120,16 @@ class SDKBridge {
 
         const slideUrlInterrupter = async (url: string) => {
             if (config.enableSlideInterrupterAPI) {
-              const modifyUrl = await sdkCallbackHandler.slideUrlInterrupter(url);
-              console.log("slideUrlInterrupter", url, modifyUrl);
-              return modifyUrl.length > 0 ? modifyUrl : url;
+                const modifyUrl = await sdkCallbackHandler.slideUrlInterrupter(url);
+                console.log("slideUrlInterrupter", url, modifyUrl);
+                return modifyUrl.length > 0 ? modifyUrl : url;
             }
             return url;
         };
 
-        const { log, __nativeTags, __platform, __netlessUA, initializeOriginsStates, useMultiViews, userCursor, enableInterrupterAPI, routeBackup, enableRtcIntercept, enableRtcAudioEffectIntercept, enableSlideInterrupterAPI, enableImgErrorCallback, enableIFramePlugin, enableSyncedStore, enableAppliancePlugin, ...restConfig } = config;
+        const { log, __nativeTags, __platform, __netlessUA, initializeOriginsStates, useMultiViews, userCursor, enableInterrupterAPI, routeBackup, enableRtcIntercept, enableRtcAudioEffectIntercept, enableSlideInterrupterAPI, enableImgErrorCallback, enableIFramePlugin, enableSyncedStore, ...restConfig } = config;
+        const enableAppliancePlugin = true     
+        const enablePcmDataCallback = (config as any).enablePcmDataCallback || false;
 
         enableReport(!!log);
         nativeConfig = config;
@@ -138,7 +145,7 @@ class SDKBridge {
         if (enableImgErrorCallback) {
             hookCreateElement();
         }
-        
+
         cursorAdapter = !!userCursor ? new CursorTool() : undefined;
 
         if (__nativeTags) {
@@ -146,7 +153,9 @@ class SDKBridge {
         }
 
         const pptParams = restConfig.pptParams || {};
-        if (enableRtcAudioEffectIntercept) {
+        if (enablePcmDataCallback) {
+            window.__pcmProxy = new PCMProxy();
+        } else if (enableRtcAudioEffectIntercept) {
             usePlugin(new EffectPlugin(new RtcAudioEffectClient("ppt")));
         } else if (enableRtcIntercept) {
             let rtcAudioMixingClient = new RtcAudioMixingClient();
@@ -196,6 +205,47 @@ class SDKBridge {
                 return SlideApp;
             },
         });
+        WindowManager.register({
+            kind: 'Talkative',
+            src: async () => Talkative,
+            appOptions: {
+                debug: false,
+            },
+        });
+        WindowManager.register({
+            kind: "AppIframeBridge",
+            src: AppIframeBridge,
+        });
+        WindowManager.register({
+            kind: 'Talkative',
+            src: Talkative,
+            appOptions: {
+                debug: false,
+                onLocalMessage: (appId: string, event: Record<string, any>) => {
+                    logger('talkativeOnLocalMessage', event)
+                    const { data } = event
+                    if (data && (data as any)?.cwd) {
+                        call("wuKongOptions.receiveTalkActiveInfo", JSON.stringify(data));
+                    }
+                },
+                setReceivePostMessageFun: (fun: (message: unknown) => void) => {
+                    logger('talkativeReceivePostMessageFun', fun)
+                    //@ts-ignore
+                    window.postMessageToTalkActive = fun
+                },
+                //获取同步信息
+                getInfoSync: async (configInfo: string) => {
+                    //@ts-ignore
+                    logger('talkativeGetInfoSyncConfig', configInfo)
+                    const result = await (asyncCall("wuKongOptions.getInfoSync", configInfo) as Promise<string>)
+                    logger('talkativeGetInfoSyncResult', result)
+                    return new Promise((resolve) => {
+                        resolve(result);
+                    });
+                }
+            },
+        })
+        WindowManager.appReadonly = true
         for (const v of window.appRegisterParams || []) {
             WindowManager.register({
                 kind: v.kind,
@@ -246,7 +296,7 @@ class SDKBridge {
         const invisiblePlugins = [
             ...useMultiViews ? [WindowManager as any] : [],
         ]
-        
+
         window.nativeWebSocket = nativeWebSocket;
 
         const roomCallbackHandler = new RoomCallbackHandler();
@@ -261,6 +311,7 @@ class SDKBridge {
             disableMagixEventDispatchLimit: useMultiViews,
         }, {...roomCallbackHandler, ...sdkCallbackHandler}).then(async aRoom => {
             removeBind();
+            aRoom.syncMode = true;
             room = aRoom;
             let roomState = room.state;
 
@@ -275,26 +326,37 @@ class SDKBridge {
                             .telebox-titlebar, .telebox-max-titlebar-maximized,.netless-app-slide-footer, .telebox-footer-wrap, .telebox-titlebar-wrap { display: none }
                         `;
                     }
-                    
+
                     const manager = await mountWindowManager(room, roomCallbackHandler, windowParams );       
                     roomState = { ...roomState, ...{ windowBoxState: manager.boxState }, cameraState: manager.cameraState, sceneState: manager.sceneState, ...{ pageState: manager.pageState } };
 
                     if (fullscreen) {
                         manager.setMaximized(true);
                     }
-
-                    if (nativeConfig?.enableAppliancePlugin) {
+                    const enableAppliancePlugin = true
+                    if (enableAppliancePlugin) {
                         const plugin = await ApplianceMultiPlugin.getInstance(manager,
                             {
                                 options: {
+                                    canvasOpt: {
+                                        contextType: "2d",
+                                    },
                                     cdn: {
                                         fullWorkerUrl,
                                         subWorkerUrl,
+                                    },
+                                    syncOpt: {
+                                        interval: 0
                                     }
-                                }
+                                },
+                                logger: (room as any).logger,
                             }
                         );
                         window.appliancePlugin = plugin;
+                        if (plugin.injectMethodToObject) {
+                            plugin.injectMethodToObject(window, "requestIdleCallback")
+                            plugin.injectMethodToObject(window, "cancelIdleCallback")
+                        }
                     }
                 } catch (error) {
                     return responseCallback(JSON.stringify({__error: {message: error.message, jsStack: error.stack}}));
@@ -312,9 +374,7 @@ class SDKBridge {
             }
             registerBridgeRoom(room);
             // joinRoom 的 disableCameraTransform 参数不生效的 workaround。等 web-sdk 修复后，删除这里的代码。
-            if (disableCameraTransform) {
-                room.disableCameraTransform = disableCameraTransform;
-            }
+            room.disableCameraTransform = true
             return responseCallback(JSON.stringify({ state: roomState, observerId: room.observerId, isWritable: room.isWritable}));
         }).catch((e: Error) => {
             return responseCallback(JSON.stringify({__error: {message: e.message, jsStack: e.stack}}));
@@ -361,6 +421,7 @@ class SDKBridge {
         }, {...replayCallbackHanlder, ...sdkCallbackHandler}).then(async mPlayer => {
             removeBind();
             player = mPlayer;
+            player.disableCameraTransform = true
             // 多窗口需要调用 player 的 getInvisiblePlugin 方法，获取数据，而这些数据需要在 player 成功初始化，首次进入 play || pause 状态，才能获取到，所以回放时，多窗口需要异步
             if (!useMultiViews) {
                 mPlayer.bindHtmlElement(divRef() as HTMLDivElement);
@@ -389,7 +450,7 @@ class SDKBridge {
             } else {
                 registerPlayerBridge(mPlayer, undefined, lastSchedule, replayCallbackHanlder);
             }
-       
+
             const {progressTime: scheduleTime, timeDuration, framesCount, beginTimestamp} = mPlayer;
             return responseCallback(JSON.stringify({timeInfo: {scheduleTime, timeDuration, framesCount, beginTimestamp}}));
         }).catch((e: Error) => {
@@ -461,7 +522,7 @@ class SDKBridge {
             sheet.id = textareaCSSId;
             document.body.appendChild(sheet);
         }
-        
+
         let fontNames = fonts.map(f => `"${f}"`).join(",");
 
         sheet!.innerHTML = `.netless-whiteboard textarea {

@@ -1,7 +1,7 @@
 import { AppResult, Attributes as SlideAttributes } from "@netless/app-slide";
 import { TeleBoxColorScheme } from '@netless/telebox-insider';
 import { AddAppOptions, AddPageParams, BuiltinApps, WindowManager } from "@netless/window-manager";
-import { GlobalState, ImageInformation, MemberState, Room, SceneDefinition, ViewMode } from "white-web-sdk";
+import { GlobalState, ImageInformation, MemberState, Room, SceneDefinition, ViewMode, ApplianceNames } from "white-web-sdk";
 import { addBridgeLogHook, createPageState } from "../utils/Funs";
 import { logger } from "../utils/Logger";
 import { registerDisplayerBridge } from "./Displayer";
@@ -416,7 +416,17 @@ export class RoomAsyncBridge {
     }
 
     setMemberState = (memberState: Partial<MemberState>) => {
-        this.room.setMemberState(memberState);
+        const state = {...memberState}
+        if (state.currentApplianceName == ApplianceNames.hand) {
+            state.currentApplianceName = ApplianceNames.clicker
+        }
+
+        if (state.currentApplianceName == ApplianceNames.pencilEraser) {
+            window.appliancePlugin?.setMemberState?.({eraserColor: [255, 255, 255], eraserOpacity: 1})
+            // @ts-ignore
+            // this.room.setMemberState({eraserColor: [255, 255, 255], eraserOpacity: 1})
+        }
+        this.room.setMemberState(state);
     }
 
     setViewMode = (viewMode: string) => {
