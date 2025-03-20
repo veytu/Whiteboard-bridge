@@ -33,6 +33,7 @@ import { prepare } from '@netless/white-prepare';
 import { ApplianceMultiPlugin } from '@netless/appliance-plugin';
 import fullWorkerString from '@netless/appliance-plugin/dist/fullWorker.js?raw';
 import subWorkerString from '@netless/appliance-plugin/dist/subWorker.js?raw';
+import Plyr from '@netless/app-plyr';
 const fullWorkerBlob = new Blob([fullWorkerString], { type: 'text/javascript' });
 const fullWorkerUrl = URL.createObjectURL(fullWorkerBlob);
 const subWorkerBlob = new Blob([subWorkerString], { type: 'text/javascript' });
@@ -199,7 +200,14 @@ class SDKBridge {
         });
         WindowManager.register({
             kind: 'Talkative',
-            src: Talkative,
+            src: async () => Talkative,
+            appOptions: {
+              debug: false,
+            },
+          });
+          WindowManager.register({
+            kind: 'Plyr',
+            src: async () => Plyr,
             appOptions: {
               debug: false,
             },
