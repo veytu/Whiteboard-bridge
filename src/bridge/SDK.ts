@@ -33,7 +33,7 @@ import { prepare } from '@netless/white-prepare';
 import { ApplianceMultiPlugin } from '@netless/appliance-plugin';
 import fullWorkerString from '@netless/appliance-plugin/dist/fullWorker.js?raw';
 import subWorkerString from '@netless/appliance-plugin/dist/subWorker.js?raw';
-import Plyr from '@netless/app-plyr';
+
 const fullWorkerBlob = new Blob([fullWorkerString], { type: 'text/javascript' });
 const fullWorkerUrl = URL.createObjectURL(fullWorkerBlob);
 const subWorkerBlob = new Blob([subWorkerString], { type: 'text/javascript' });
@@ -91,12 +91,13 @@ function removeBind() {
 }
 
 async function mountWindowManager(room: Room, handler: RoomCallbackHandler | ReplayerCallbackHandler, windowParams?: Omit<Omit<MountParams, "room">, "container"> | undefined) {
+    const enableAppliancePlugin = true
     const manager = await WindowManager.mount({
         // 高比宽
         containerSizeRatio: 9/16,
         chessboard: true,
         cursor: !!cursorAdapter,
-        supportAppliancePlugin: nativeConfig?.enableAppliancePlugin,
+        supportAppliancePlugin: enableAppliancePlugin,
         ...windowParams,
         container: divRef(),
         room,
@@ -124,8 +125,8 @@ class SDKBridge {
             return url;
         };
 
-        const { log, __nativeTags, __platform, __netlessUA, initializeOriginsStates, useMultiViews, userCursor, enableInterrupterAPI, routeBackup, enableRtcIntercept, enableRtcAudioEffectIntercept, enableSlideInterrupterAPI, enableImgErrorCallback, enableIFramePlugin, enableSyncedStore, enableAppliancePlugin, ...restConfig } = config;
-
+        const { log, __nativeTags, __platform, __netlessUA, initializeOriginsStates, useMultiViews, userCursor, enableInterrupterAPI, routeBackup, enableRtcIntercept, enableRtcAudioEffectIntercept, enableSlideInterrupterAPI, enableImgErrorCallback, enableIFramePlugin, enableSyncedStore, ...restConfig } = config;
+        const enableAppliancePlugin = true
         enableReport(!!log);
         nativeConfig = config;
 
@@ -201,13 +202,6 @@ class SDKBridge {
         WindowManager.register({
             kind: 'Talkative',
             src: async () => Talkative,
-            appOptions: {
-              debug: false,
-            },
-          });
-          WindowManager.register({
-            kind: 'Plyr',
-            src: async () => Plyr,
             appOptions: {
               debug: false,
             },
@@ -298,8 +292,8 @@ class SDKBridge {
                     if (fullscreen) {
                         manager.setMaximized(true);
                     }
-
-                    if (nativeConfig?.enableAppliancePlugin) {
+                    const enableAppliancePlugin = true
+                    if (enableAppliancePlugin) {
                         const plugin = await ApplianceMultiPlugin.getInstance(manager,
                             {
                                 options: {
@@ -307,7 +301,8 @@ class SDKBridge {
                                         fullWorkerUrl,
                                         subWorkerUrl,
                                     }
-                                }
+                                },
+                                logger: (room as any).logger
                             }
                         );
                         window.appliancePlugin = plugin;
@@ -328,9 +323,7 @@ class SDKBridge {
             }
             registerBridgeRoom(room);
             // joinRoom 的 disableCameraTransform 参数不生效的 workaround。等 web-sdk 修复后，删除这里的代码。
-            if (disableCameraTransform) {
-                room.disableCameraTransform = disableCameraTransform;
-            }
+            room.disableCameraTransform = true
             return responseCallback(JSON.stringify({ state: roomState, observerId: room.observerId, isWritable: room.isWritable}));
         }).catch((e: Error) => {
             return responseCallback(JSON.stringify({__error: {message: e.message, jsStack: e.stack}}));
