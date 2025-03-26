@@ -206,6 +206,7 @@ class SDKBridge {
               debug: false,
             },
           });
+        WindowManager.appReadonly = true
         for (const v of window.appRegisterParams || []) {
             WindowManager.register({
                 kind: v.kind,
@@ -273,6 +274,7 @@ class SDKBridge {
             removeBind();
             room = aRoom;
             let roomState = room.state;
+            room.disableCameraTransform = true
 
             /** native 端，把 sdk 初始化时的 useMultiViews 记录下来，再初始化 sdk 的时候，同步传递进来，避免用户写两遍 */
             if (useMultiViews) {
@@ -370,6 +372,7 @@ class SDKBridge {
         }, {...replayCallbackHanlder, ...sdkCallbackHandler}).then(async mPlayer => {
             removeBind();
             player = mPlayer;
+            player.disableCameraTransform = true
             // 多窗口需要调用 player 的 getInvisiblePlugin 方法，获取数据，而这些数据需要在 player 成功初始化，首次进入 play || pause 状态，才能获取到，所以回放时，多窗口需要异步
             if (!useMultiViews) {
                 mPlayer.bindHtmlElement(divRef() as HTMLDivElement);
