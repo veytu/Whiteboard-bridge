@@ -274,7 +274,6 @@ class SDKBridge {
             removeBind();
             room = aRoom;
             let roomState = room.state;
-            room.disableCameraTransform = true
 
             /** native 端，把 sdk 初始化时的 useMultiViews 记录下来，再初始化 sdk 的时候，同步传递进来，避免用户写两遍 */
             if (useMultiViews) {
