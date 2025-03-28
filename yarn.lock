@@ -1251,8 +1251,8 @@
   integrity sha512-ZfJt/fD824oqLFW6Jl09cpWB9t30G+lwSUzLiWI1PpakhdlxX3lC9XMH8FtWGghYbzzXFEDh6Ay2N02F87II7g==
 
 "@netless/window-manager@github:veytu/window-manager":
-  version "1.0.97"
-  resolved "https://codeload.github.com/veytu/window-manager/tar.gz/4e7144a756e20bbd6b4b27485f72c512120e8676"
+  version "1.0.98"
+  resolved "https://codeload.github.com/veytu/window-manager/tar.gz/4e4f49caa4013b7cae103766336c74f87a822668"
   dependencies:
     "@juggle/resize-observer" "^3.3.1"
     "@netless/app-plyr" "github:veytu/app-plyr"
