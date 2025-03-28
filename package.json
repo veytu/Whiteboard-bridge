@@ -21,6 +21,7 @@
     "**/video.js": "7.10.0"
   },
   "dependencies": {
+    "@netless/app-plyr": "github:veytu/app-plyr",
     "@netless/app-slide": "github:veytu/app-slide",
     "@netless/app-talkative": "github:veytu/app-talkative.git",
     "@netless/appliance-plugin": "1.1.17-beta.1",

@@ -1136,8 +1136,8 @@
     xtend "^4.0.2"
 
 "@netless/app-plyr@github:veytu/app-plyr":
-  version "0.1.10"
-  resolved "https://codeload.github.com/veytu/app-plyr/tar.gz/94aa5dd43b707f221b1bc278ae86238054465343"
+  version "0.1.17"
+  resolved "https://codeload.github.com/veytu/app-plyr/tar.gz/0a4a5944d289639d5aafc89ec3c4333d78b7d772"
 
 "@netless/app-slide@github:veytu/app-slide":
   version "0.2.68"
