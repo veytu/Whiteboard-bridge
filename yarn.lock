@@ -1147,10 +1147,10 @@
   version "0.1.2"
   resolved "https://codeload.github.com/veytu/app-talkative/tar.gz/b542cbbcbd83cd0bd40b38034a2465fd88f16419"
 
-"@netless/appliance-plugin@1.1.17-beta.1":
-  version "1.1.17-beta.1"
-  resolved "https://registry.npmjs.org/@netless/appliance-plugin/-/appliance-plugin-1.1.17-beta.1.tgz#ded70472c2531853463887de406638b347b51dda"
-  integrity sha512-mJj/wnITPu1N+qgFYu8JhjvkehuIQmajZ/bM2MEyBsS69qkGO5puTooxX7VmBrbDNhfd7w9gYDwps41HnH+Klw==
+"@netless/appliance-plugin@1.1.17-beta.2":
+  version "1.1.17-beta.2"
+  resolved "https://registry.npmjs.org/@netless/appliance-plugin/-/appliance-plugin-1.1.17-beta.2.tgz#8d744f76c5bae93c8f7d154dbaf7e91d896e12d9"
+  integrity sha512-Jn/Qhj2LmrXTMW+ImmvKyGldcUcs+5jEXwkx9ilAYkRFF9L7m/9Y8A8Q0BDQuD1/Oc/5vfFw5VlzN9313/E56Q==
   dependencies:
     eventemitter2 "^6.4.9"
     lineclip "^1.1.5"
@@ -1251,8 +1251,8 @@
   integrity sha512-ZfJt/fD824oqLFW6Jl09cpWB9t30G+lwSUzLiWI1PpakhdlxX3lC9XMH8FtWGghYbzzXFEDh6Ay2N02F87II7g==
 
 "@netless/window-manager@github:veytu/window-manager":
-  version "1.0.98"
-  resolved "https://codeload.github.com/veytu/window-manager/tar.gz/4e4f49caa4013b7cae103766336c74f87a822668"
+  version "1.0.100"
+  resolved "https://codeload.github.com/veytu/window-manager/tar.gz/4d67101f5dceaae11734df682de261169b8b096e"
   dependencies:
     "@juggle/resize-observer" "^3.3.1"
     "@netless/app-plyr" "github:veytu/app-plyr"
