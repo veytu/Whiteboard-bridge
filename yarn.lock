@@ -1140,12 +1140,12 @@
   resolved "https://codeload.github.com/veytu/app-plyr/tar.gz/0a4a5944d289639d5aafc89ec3c4333d78b7d772"
 
 "@netless/app-slide@github:veytu/app-slide":
-  version "0.2.75"
-  resolved "https://codeload.github.com/veytu/app-slide/tar.gz/06b35978966c7d5a206701cf9b78144424ae3940"
+  version "0.2.77"
+  resolved "https://codeload.github.com/veytu/app-slide/tar.gz/f3f1abe6dffcc617ace886fca35b654ef139319c"
 
 "@netless/app-talkative@github:veytu/app-talkative.git":
-  version "0.1.2"
-  resolved "https://codeload.github.com/veytu/app-talkative/tar.gz/b542cbbcbd83cd0bd40b38034a2465fd88f16419"
+  version "0.1.3"
+  resolved "https://codeload.github.com/veytu/app-talkative/tar.gz/80f83637142b0421fd44f03203e6e520d752e249"
 
 "@netless/appliance-plugin@1.1.17-beta.2":
   version "1.1.17-beta.2"
