@@ -312,6 +312,7 @@ class SDKBridge {
                             }
                         );
                         window.appliancePlugin = plugin;
+                        plugin.setMemberState({eraserColor: [255, 255, 255], eraserOpacity: 1})
                     }
                 } catch (error) {
                     return responseCallback(JSON.stringify({__error: {message: error.message, jsStack: error.stack}}));
