@@ -14,6 +14,7 @@ import { EffectPlugin, MixingPlugin } from '@netless/slide-rtc-plugin';
 import { MountParams, WindowManager } from "@netless/window-manager";
 import { SyncedStorePlugin } from "@netless/synced-store";
 import {IframeBridge, IframeWrapper} from "@netless/iframe-bridge";
+import AppIframeBridge from '@netless/app-iframe-bridge';
 import {logger, enableReport} from "../utils/Logger";
 import {convertBound} from "../utils/BoundConvert";
 import { addManagerListener } from "./Manager";
@@ -205,7 +206,11 @@ class SDKBridge {
             appOptions: {
               debug: false,
             },
-          });
+        });
+        WindowManager.register({
+            kind: "AppIframeBridge",
+            src: AppIframeBridge,
+        })
         WindowManager.appReadonly = true
         for (const v of window.appRegisterParams || []) {
             WindowManager.register({
@@ -325,6 +330,8 @@ class SDKBridge {
             registerBridgeRoom(room);
             // joinRoom 的 disableCameraTransform 参数不生效的 workaround。等 web-sdk 修复后，删除这里的代码。
             room.disableCameraTransform = true
+            // @ts-ignore
+            room.setMemberState({eraserColor: [255, 255, 255], eraserOpacity: 1})
             return responseCallback(JSON.stringify({ state: roomState, observerId: room.observerId, isWritable: room.isWritable}));
         }).catch((e: Error) => {
             return responseCallback(JSON.stringify({__error: {message: e.message, jsStack: e.stack}}));

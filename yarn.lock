@@ -1135,6 +1135,10 @@
     tess2 "^1.0.0"
     xtend "^4.0.2"
 
+"@netless/app-iframe-bridge@github:veytu/app-iframe-bridge":
+  version "0.0.2"
+  resolved "https://codeload.github.com/veytu/app-iframe-bridge/tar.gz/e861f89fc50efd246044d379519507e2c7bb87b7"
+
 "@netless/app-plyr@github:veytu/app-plyr":
   version "0.1.17"
   resolved "https://codeload.github.com/veytu/app-plyr/tar.gz/0a4a5944d289639d5aafc89ec3c4333d78b7d772"
@@ -1147,10 +1151,10 @@
   version "0.1.3"
   resolved "https://codeload.github.com/veytu/app-talkative/tar.gz/80f83637142b0421fd44f03203e6e520d752e249"
 
-"@netless/appliance-plugin@1.1.17-beta.2":
-  version "1.1.17-beta.2"
-  resolved "https://registry.npmjs.org/@netless/appliance-plugin/-/appliance-plugin-1.1.17-beta.2.tgz#8d744f76c5bae93c8f7d154dbaf7e91d896e12d9"
-  integrity sha512-Jn/Qhj2LmrXTMW+ImmvKyGldcUcs+5jEXwkx9ilAYkRFF9L7m/9Y8A8Q0BDQuD1/Oc/5vfFw5VlzN9313/E56Q==
+"@netless/appliance-plugin@1.1.17-beta.4":
+  version "1.1.17-beta.4"
+  resolved "https://registry.npmjs.org/@netless/appliance-plugin/-/appliance-plugin-1.1.17-beta.4.tgz#6329e0c0f723e3fc4b9834812a3e608a4d7a46a2"
+  integrity sha512-Lzm42BT+FZDk6iTObAnM0m79fnSEYiQTRn6Qyti1Q8cpfOenejpgPv/P7cQ+PwsYt4calTcajkHTSJxswCywjA==
   dependencies:
     eventemitter2 "^6.4.9"
     lineclip "^1.1.5"
