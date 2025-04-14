@@ -420,6 +420,10 @@ export class RoomAsyncBridge {
         if (state.currentApplianceName == ApplianceNames.hand) {
             state.currentApplianceName = ApplianceNames.clicker
         }
+
+        if (state.currentApplianceName == ApplianceNames.eraser) {
+            window.appliancePlugin?.setMemberState?.({eraserColor: [255, 255, 255], eraserOpacity: 1})
+        }
         this.room.setMemberState(state);
     }
 

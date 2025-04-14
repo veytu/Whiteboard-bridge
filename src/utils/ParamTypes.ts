@@ -4,6 +4,7 @@ import { WhiteWebSdk, Room, Player } from 'white-web-sdk';
 import { AppRegisterParams, PluginContext, PluginParams } from '@netless/whiteboard-bridge-types';
 import { SyncedStore } from '@netless/synced-store';
 import { RtcAudioEffectClient } from '../RtcAudioEffectClient';
+import { AppliancePluginInstance } from '@netless/appliance-plugin';
 
 declare global {
   interface PrepareParams {
@@ -36,6 +37,6 @@ declare global {
     appRegisterParams: AppRegisterParams[];
     nativeWebSocket?: boolean;
     syncedStore?: SyncedStore;
-    appliancePlugin: any;
+    appliancePlugin: AppliancePluginInstance;
   }
 }

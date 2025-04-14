@@ -312,7 +312,6 @@ class SDKBridge {
                             }
                         );
                         window.appliancePlugin = plugin;
-                        plugin.setMemberState({eraserColor: [255, 255, 255], eraserOpacity: 1})
                     }
                 } catch (error) {
                     return responseCallback(JSON.stringify({__error: {message: error.message, jsStack: error.stack}}));
@@ -331,8 +330,6 @@ class SDKBridge {
             registerBridgeRoom(room);
             // joinRoom 的 disableCameraTransform 参数不生效的 workaround。等 web-sdk 修复后，删除这里的代码。
             room.disableCameraTransform = true
-            // @ts-ignore
-            room.setMemberState({eraserColor: [255, 255, 255], eraserOpacity: 1})
             return responseCallback(JSON.stringify({ state: roomState, observerId: room.observerId, isWritable: room.isWritable}));
         }).catch((e: Error) => {
             return responseCallback(JSON.stringify({__error: {message: e.message, jsStack: e.stack}}));
