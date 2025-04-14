@@ -421,8 +421,10 @@ export class RoomAsyncBridge {
             state.currentApplianceName = ApplianceNames.clicker
         }
 
-        if (state.currentApplianceName == ApplianceNames.eraser) {
+        if (state.currentApplianceName == ApplianceNames.pencilEraser) {
             window.appliancePlugin?.setMemberState?.({eraserColor: [255, 255, 255], eraserOpacity: 1})
+            // @ts-ignore
+            // this.room.setMemberState({eraserColor: [255, 255, 255], eraserOpacity: 1})
         }
         this.room.setMemberState(state);
     }
