@@ -1144,17 +1144,17 @@
   resolved "https://codeload.github.com/veytu/app-plyr/tar.gz/5913af320650c7245708908e17ab3683c518cb7c"
 
 "@netless/app-slide@github:veytu/app-slide":
-  version "0.2.80"
-  resolved "https://codeload.github.com/veytu/app-slide/tar.gz/cd0bba327166d66cbbd4fc9fa76a5ad8ea57a52d"
+  version "0.2.83"
+  resolved "https://codeload.github.com/veytu/app-slide/tar.gz/9c4b5e243d28dce5f22d09947266e090dc8e24d9"
 
 "@netless/app-talkative@github:veytu/app-talkative.git":
   version "0.1.7"
   resolved "https://codeload.github.com/veytu/app-talkative/tar.gz/3ffd76f633a18f118990b41cc15b5c1ac135956e"
 
-"@netless/appliance-plugin@1.1.17-beta.4":
-  version "1.1.17-beta.4"
-  resolved "https://registry.npmjs.org/@netless/appliance-plugin/-/appliance-plugin-1.1.17-beta.4.tgz#6329e0c0f723e3fc4b9834812a3e608a4d7a46a2"
-  integrity sha512-Lzm42BT+FZDk6iTObAnM0m79fnSEYiQTRn6Qyti1Q8cpfOenejpgPv/P7cQ+PwsYt4calTcajkHTSJxswCywjA==
+"@netless/appliance-plugin@1.1.17-beta.6":
+  version "1.1.17-beta.6"
+  resolved "https://registry.npmjs.org/@netless/appliance-plugin/-/appliance-plugin-1.1.17-beta.6.tgz#a38a8aaad083cabb5d49c8749d7828fa487d39f1"
+  integrity sha512-5xqpUaRYASPC0+bvoSEXIeHSEMrcMlhjNSh4sAEGKXkrMCGXU553gUl0Cr3bc59WoQhOD2qwjLxjTNaX4Y2CDg==
   dependencies:
     eventemitter2 "^6.4.9"
     lineclip "^1.1.5"
