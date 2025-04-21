@@ -306,9 +306,12 @@ class SDKBridge {
                                     cdn: {
                                         fullWorkerUrl,
                                         subWorkerUrl,
+                                    },
+                                    syncOpt: {
+                                        interval: 0
                                     }
                                 },
-                                logger: (room as any).logger
+                                logger: (room as any).logger,
                             }
                         );
                         window.appliancePlugin = plugin;
