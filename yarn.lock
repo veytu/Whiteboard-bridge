@@ -1151,10 +1151,10 @@
   version "0.1.7"
   resolved "https://codeload.github.com/veytu/app-talkative/tar.gz/3ffd76f633a18f118990b41cc15b5c1ac135956e"
 
-"@netless/appliance-plugin@1.1.17-beta.6":
-  version "1.1.17-beta.6"
-  resolved "https://registry.npmjs.org/@netless/appliance-plugin/-/appliance-plugin-1.1.17-beta.6.tgz#a38a8aaad083cabb5d49c8749d7828fa487d39f1"
-  integrity sha512-5xqpUaRYASPC0+bvoSEXIeHSEMrcMlhjNSh4sAEGKXkrMCGXU553gUl0Cr3bc59WoQhOD2qwjLxjTNaX4Y2CDg==
+"@netless/appliance-plugin@1.1.17-beta.8":
+  version "1.1.17-beta.8"
+  resolved "https://registry.npmjs.org/@netless/appliance-plugin/-/appliance-plugin-1.1.17-beta.8.tgz#de464c7e99e5e33e900327498b8af8c47042f63d"
+  integrity sha512-LgShVJVkrsvQMJD7i6at8wiiAv1VxYnt9S2hxQw8koby0b5n/1SIDllbD+0V3GH+ILLBrNOxhxyhBHbo+mqtcQ==
   dependencies:
     eventemitter2 "^6.4.9"
     lineclip "^1.1.5"

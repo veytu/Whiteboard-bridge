@@ -308,13 +308,17 @@ class SDKBridge {
                                         subWorkerUrl,
                                     },
                                     syncOpt: {
-                                        interval: 0
+                                        interval: 100
                                     }
                                 },
                                 logger: (room as any).logger,
                             }
                         );
                         window.appliancePlugin = plugin;
+                        if (plugin.injectMethodToObject) {
+                            plugin.injectMethodToObject(window, "requestIdleCallback")
+                            plugin.injectMethodToObject(window, "cancelIdleCallback")
+                        }
                     }
                 } catch (error) {
                     return responseCallback(JSON.stringify({__error: {message: error.message, jsStack: error.stack}}));
