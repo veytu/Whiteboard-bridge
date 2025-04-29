@@ -1144,8 +1144,8 @@
   resolved "https://codeload.github.com/veytu/app-plyr/tar.gz/5913af320650c7245708908e17ab3683c518cb7c"
 
 "@netless/app-slide@github:veytu/app-slide":
-  version "0.2.90"
-  resolved "https://codeload.github.com/veytu/app-slide/tar.gz/def7b35888840a0b9a1eed543a996fe83a6c9c9a"
+  version "0.2.97"
+  resolved "https://codeload.github.com/veytu/app-slide/tar.gz/10ffe2267b31f840951e22882eaf9641950c5ac4"
 
 "@netless/app-talkative@github:veytu/app-talkative.git":
   version "0.1.7"
