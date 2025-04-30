@@ -1144,8 +1144,8 @@
   resolved "https://codeload.github.com/veytu/app-plyr/tar.gz/5913af320650c7245708908e17ab3683c518cb7c"
 
 "@netless/app-slide@github:veytu/app-slide":
-  version "0.2.103"
-  resolved "https://codeload.github.com/veytu/app-slide/tar.gz/b23f5461890f3764374d769fd21586f60403f155"
+  version "0.2.105"
+  resolved "https://codeload.github.com/veytu/app-slide/tar.gz/61c68940d3befc02cc22c131b98504d1cfefb477"
 
 "@netless/app-talkative@github:veytu/app-talkative.git":
   version "0.1.7"
@@ -1255,8 +1255,8 @@
   integrity sha512-ZfJt/fD824oqLFW6Jl09cpWB9t30G+lwSUzLiWI1PpakhdlxX3lC9XMH8FtWGghYbzzXFEDh6Ay2N02F87II7g==
 
 "@netless/window-manager@github:veytu/window-manager":
-  version "1.1.50"
-  resolved "https://codeload.github.com/veytu/window-manager/tar.gz/d4820c4f1c8b9af2d2fa3057c1e7f971783b72a5"
+  version "1.1.51"
+  resolved "https://codeload.github.com/veytu/window-manager/tar.gz/7bda8d5b9bda69268543f18f3e8da61c4d53d1f2"
   dependencies:
     "@juggle/resize-observer" "^3.3.1"
     "@netless/app-plyr" "github:veytu/app-plyr"
