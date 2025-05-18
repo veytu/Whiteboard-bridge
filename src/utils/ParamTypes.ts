@@ -5,6 +5,7 @@ import { AppRegisterParams, PluginContext, PluginParams } from '@netless/whitebo
 import { SyncedStore } from '@netless/synced-store';
 import { RtcAudioEffectClient } from '../RtcAudioEffectClient';
 import { AppliancePluginInstance } from '@netless/appliance-plugin';
+import { PCMProxy } from '../PCMProxy';
 
 declare global {
   interface PrepareParams {
@@ -27,6 +28,7 @@ declare global {
     __netlessUA?: string;
     __netlessMobXUseProxies?: string;
     __mediaPlayerAudioEffectClient?: RtcAudioEffectClient;
+    __pcmProxy?: PCMProxy;
     testRoom: () => void;
     testReplay: () => void;
     html2canvas: any;

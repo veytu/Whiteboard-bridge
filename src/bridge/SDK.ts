@@ -35,6 +35,7 @@ import { ApplianceMultiPlugin } from '@netless/appliance-plugin';
 import fullWorkerString from '@netless/appliance-plugin/dist/fullWorker.js?raw';
 import subWorkerString from '@netless/appliance-plugin/dist/subWorker.js?raw';
 
+import { PCMProxy } from '../PCMProxy';
 const fullWorkerBlob = new Blob([fullWorkerString], { type: 'text/javascript' });
 const fullWorkerUrl = URL.createObjectURL(fullWorkerBlob);
 const subWorkerBlob = new Blob([subWorkerString], { type: 'text/javascript' });
@@ -127,7 +128,9 @@ class SDKBridge {
         };
 
         const { log, __nativeTags, __platform, __netlessUA, initializeOriginsStates, useMultiViews, userCursor, enableInterrupterAPI, routeBackup, enableRtcIntercept, enableRtcAudioEffectIntercept, enableSlideInterrupterAPI, enableImgErrorCallback, enableIFramePlugin, enableSyncedStore, ...restConfig } = config;
-        const enableAppliancePlugin = true
+        const enableAppliancePlugin = true     
+        const enablePcmDataCallback = (config as any).enablePcmDataCallback || false;
+
         enableReport(!!log);
         nativeConfig = config;
 
@@ -150,7 +153,9 @@ class SDKBridge {
         }
 
         const pptParams = restConfig.pptParams || {};
-        if (enableRtcAudioEffectIntercept) {
+        if (enablePcmDataCallback) {
+            window.__pcmProxy = new PCMProxy();
+        } else if (enableRtcAudioEffectIntercept) {
             usePlugin(new EffectPlugin(new RtcAudioEffectClient("ppt")));
         } else if (enableRtcIntercept) {
             let rtcAudioMixingClient = new RtcAudioMixingClient();
