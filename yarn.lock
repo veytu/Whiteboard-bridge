@@ -1140,12 +1140,12 @@
   resolved "https://codeload.github.com/veytu/app-iframe-bridge/tar.gz/169af656c699a341ba71f631a04e219b7e9caef3"
 
 "@netless/app-plyr@github:veytu/app-plyr":
-  version "0.1.21"
-  resolved "https://codeload.github.com/veytu/app-plyr/tar.gz/5913af320650c7245708908e17ab3683c518cb7c"
+  version "0.1.23"
+  resolved "https://codeload.github.com/veytu/app-plyr/tar.gz/03a30050dba2549f4a84452ef2f2eead6c595854"
 
 "@netless/app-slide@github:veytu/app-slide":
-  version "0.2.106"
-  resolved "https://codeload.github.com/veytu/app-slide/tar.gz/4dd04f10c763dc958416ef203ab2614d2248048e"
+  version "0.2.118"
+  resolved "https://codeload.github.com/veytu/app-slide/tar.gz/0bf5aeb9984b1797943bebc883f5bcb4f8addb7c"
 
 "@netless/app-talkative@github:veytu/app-talkative.git":
   version "0.1.7"
