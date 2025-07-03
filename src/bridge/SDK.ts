@@ -1,6 +1,6 @@
 import { hookCreateElement } from '../utils/ImgError';
 import {CursorTool} from "@netless/cursor-tool";
-import { registerAsyn } from '.';
+import { call, registerAsyn } from '.';
 import { NativeSDKConfig, NativeJoinRoomParams, NativeReplayParams, AppRegisterParams, NativeSlideAppOptions } from "@netless/whiteboard-bridge-types";
 import {WhiteWebSdk, Room, Player, createPlugins, PlayerPhase, setAsyncModuleLoadMode, AsyncModuleLoadMode} from "white-web-sdk";
 import {videoPlugin} from "@netless/white-video-plugin";
@@ -119,9 +119,9 @@ class SDKBridge {
 
         const slideUrlInterrupter = async (url: string) => {
             if (config.enableSlideInterrupterAPI) {
-              const modifyUrl = await sdkCallbackHandler.slideUrlInterrupter(url);
-              console.log("slideUrlInterrupter", url, modifyUrl);
-              return modifyUrl.length > 0 ? modifyUrl : url;
+                const modifyUrl = await sdkCallbackHandler.slideUrlInterrupter(url);
+                console.log("slideUrlInterrupter", url, modifyUrl);
+                return modifyUrl.length > 0 ? modifyUrl : url;
             }
             return url;
         };
@@ -142,7 +142,7 @@ class SDKBridge {
         if (enableImgErrorCallback) {
             hookCreateElement();
         }
-        
+
         cursorAdapter = !!userCursor ? new CursorTool() : undefined;
 
         if (__nativeTags) {
@@ -204,12 +204,31 @@ class SDKBridge {
             kind: 'Talkative',
             src: async () => Talkative,
             appOptions: {
-              debug: false,
+                debug: false,
             },
         });
         WindowManager.register({
             kind: "AppIframeBridge",
             src: AppIframeBridge,
+        });
+        WindowManager.register({
+            kind: 'Talkative',
+            src: Talkative,
+            appOptions: {
+                debug: false,
+                onLocalMessage: (appId: string, event: Record<string, any>) => {
+                    console.log('talkative', event)
+                    const { data } = event
+                    if (data && (data as any)?.cwd) {
+                          call("wuKongOptions.receiveTalkActiveInfo",JSON.stringify(data));
+                    }
+                },
+                setReceivePostMessageFun:(fun: (message: unknown) => void)=>{
+                    console.log('talkativeReceivePostMessageFun', fun)
+                    //@ts-ignore
+                    window.postMessageToTalkActive = fun
+                }
+            },
         })
         WindowManager.appReadonly = true
         for (const v of window.appRegisterParams || []) {
@@ -262,7 +281,7 @@ class SDKBridge {
         const invisiblePlugins = [
             ...useMultiViews ? [WindowManager as any] : [],
         ]
-        
+
         window.nativeWebSocket = nativeWebSocket;
 
         const roomCallbackHandler = new RoomCallbackHandler();
@@ -291,7 +310,7 @@ class SDKBridge {
                             .telebox-titlebar, .telebox-max-titlebar-maximized,.netless-app-slide-footer, .telebox-footer-wrap, .telebox-titlebar-wrap { display: none }
                         `;
                     }
-                    
+
                     const manager = await mountWindowManager(room, roomCallbackHandler, windowParams );       
                     roomState = { ...roomState, ...{ windowBoxState: manager.boxState }, cameraState: manager.cameraState, sceneState: manager.sceneState, ...{ pageState: manager.pageState } };
 
@@ -412,7 +431,7 @@ class SDKBridge {
             } else {
                 registerPlayerBridge(mPlayer, undefined, lastSchedule, replayCallbackHanlder);
             }
-       
+
             const {progressTime: scheduleTime, timeDuration, framesCount, beginTimestamp} = mPlayer;
             return responseCallback(JSON.stringify({timeInfo: {scheduleTime, timeDuration, framesCount, beginTimestamp}}));
         }).catch((e: Error) => {
@@ -484,7 +503,7 @@ class SDKBridge {
             sheet.id = textareaCSSId;
             document.body.appendChild(sheet);
         }
-        
+
         let fontNames = fonts.map(f => `"${f}"`).join(",");
 
         sheet!.innerHTML = `.netless-whiteboard textarea {
