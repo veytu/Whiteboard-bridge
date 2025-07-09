@@ -217,16 +217,26 @@ class SDKBridge {
             appOptions: {
                 debug: false,
                 onLocalMessage: (appId: string, event: Record<string, any>) => {
-                    console.log('talkative', event)
+                    logger('talkativeOnLocalMessage', event)
                     const { data } = event
                     if (data && (data as any)?.cwd) {
-                          call("wuKongOptions.receiveTalkActiveInfo",JSON.stringify(data));
+                        call("wuKongOptions.receiveTalkActiveInfo", JSON.stringify(data));
                     }
                 },
-                setReceivePostMessageFun:(fun: (message: unknown) => void)=>{
-                    console.log('talkativeReceivePostMessageFun', fun)
+                setReceivePostMessageFun: (fun: (message: unknown) => void) => {
+                    logger('talkativeReceivePostMessageFun', fun)
                     //@ts-ignore
                     window.postMessageToTalkActive = fun
+                },
+                //获取同步信息
+                getInfoSync: async (configInfo: string) => {
+                    //@ts-ignore
+                    logger('talkativeGetInfoSyncConfig', configInfo)
+                    const result = await (asyncCall("wuKongOptions.getInfoSync", configInfo) as Promise<string>)
+                    logger('talkativeGetInfoSyncResult', result)
+                    return new Promise((resolve) => {
+                        resolve(result);
+                    });
                 }
             },
         })

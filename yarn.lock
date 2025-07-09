@@ -1148,8 +1148,8 @@
   resolved "https://codeload.github.com/veytu/app-slide/tar.gz/0bf5aeb9984b1797943bebc883f5bcb4f8addb7c"
 
 "@netless/app-talkative@github:veytu/app-talkative.git":
-  version "0.1.8"
-  resolved "https://codeload.github.com/veytu/app-talkative/tar.gz/ee9c3c12f6327e0e0cf6b1a35a6d129c7d2614b7"
+  version "0.1.93"
+  resolved "https://codeload.github.com/veytu/app-talkative/tar.gz/a3954fa83099e348d4dc4f9984e55e9b78e524ad"
 
 "@netless/appliance-plugin@1.1.17-beta.8":
   version "1.1.17-beta.8"
