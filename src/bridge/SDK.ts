@@ -332,6 +332,9 @@ class SDKBridge {
                         const plugin = await ApplianceMultiPlugin.getInstance(manager,
                             {
                                 options: {
+                                    canvasOpt: {
+                                        contextType: "2d",
+                                    },
                                     cdn: {
                                         fullWorkerUrl,
                                         subWorkerUrl,
