@@ -345,7 +345,7 @@ class SDKBridge {
                                         subWorkerUrl,
                                     },
                                     syncOpt: {
-                                        interval: 100
+                                        interval: 0
                                     }
                                 },
                                 logger: (room as any).logger,
