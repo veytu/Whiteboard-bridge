@@ -21,6 +21,10 @@ export class SDKCallbackHandler {
     slideUrlInterrupter = (url: string) => {
         return asyncCall("sdk.slideUrlInterrupter", url) as Promise<string>;
     }
+
+    slideOpenUrl = (url: string) => {
+        return call("sdk.slideOpenUrl", url);
+    }
     
     onSetupFail = (e: Error) => {
         call("sdk.setupFail", {message: e.message, jsStack: e.stack});

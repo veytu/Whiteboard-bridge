@@ -17,7 +17,7 @@ import {IframeBridge, IframeWrapper} from "@netless/iframe-bridge";
 import AppIframeBridge from '@netless/app-iframe-bridge';
 import {logger, enableReport} from "../utils/Logger";
 import {convertBound} from "../utils/BoundConvert";
-import { addManagerListener } from "./Manager";
+import { addManagerListener, createAppState } from "./Manager";
 import { RoomCallbackHandler } from "../native/RoomCallbackHandler";
 import { addBridgeLogHook, createPageState } from "../utils/Funs";
 import { lastSchedule, ReplayerCallbackHandler, ReplayerCallbackHandlerImp } from "../native/ReplayerCallbackHandler";
@@ -41,6 +41,9 @@ const fullWorkerUrl = URL.createObjectURL(fullWorkerBlob);
 const subWorkerBlob = new Blob([subWorkerString], { type: 'text/javascript' });
 const subWorkerUrl = URL.createObjectURL(subWorkerBlob);
 
+interface ExtraNativeJoinRoomParams {
+  appliancePluginOptions?: Record<string, any>;
+}
 
 let sdk: WhiteWebSdk | undefined = undefined;
 let room: Room | undefined = undefined;
@@ -127,8 +130,7 @@ class SDKBridge {
             return url;
         };
 
-        const { log, __nativeTags, __platform, __netlessUA, initializeOriginsStates, useMultiViews, userCursor, enableInterrupterAPI, routeBackup, enableRtcIntercept, enableRtcAudioEffectIntercept, enableSlideInterrupterAPI, enableImgErrorCallback, enableIFramePlugin, enableSyncedStore, ...restConfig } = config;
-        const enableAppliancePlugin = true     
+        const { log, __nativeTags, __platform, __netlessUA, initializeOriginsStates, useMultiViews, userCursor, enableInterrupterAPI, routeBackup, enableRtcIntercept, enableRtcAudioEffectIntercept, enableSlideInterrupterAPI, enableImgErrorCallback, enableIFramePlugin, enableSyncedStore, enableAppliancePlugin, ...restConfig } = config;
         const enablePcmDataCallback = (config as any).enablePcmDataCallback || false;
 
         enableReport(!!log);
@@ -197,6 +199,9 @@ class SDKBridge {
         WindowManager.register({
             kind: slideKind,
             appOptions: {
+                navigatorDelegate: {
+                    openUrl: (url: string) => sdkCallbackHandler.slideOpenUrl(url),
+                },
                 urlInterrupter: slideUrlInterrupter,
                 ...slideAppOptions,
             },
@@ -285,13 +290,14 @@ class SDKBridge {
         }
     };
 
-    joinRoom = (nativeParams: NativeJoinRoomParams, responseCallback: any) => {
+    joinRoom = (nativeParams: NativeJoinRoomParams & ExtraNativeJoinRoomParams, responseCallback: any) => {
         if (!sdk) {
             responseCallback(JSON.stringify({__error: {message: "sdk init failed"}}));
             return;
         }
         removeBind();
-        const {timeout = 45000, cameraBound, windowParams, disableCameraTransform, nativeWebSocket, ...joinRoomParams} = nativeParams;
+        const {timeout = 45000, cameraBound, windowParams, disableCameraTransform, nativeWebSocket, appliancePluginOptions, ...joinRoomParams} = nativeParams;
+
         const {useMultiViews, enableSyncedStore} = nativeConfig!;
         const invisiblePlugins = [
             ...useMultiViews ? [WindowManager as any] : [],
@@ -325,9 +331,9 @@ class SDKBridge {
                             .telebox-titlebar, .telebox-max-titlebar-maximized,.netless-app-slide-footer, .telebox-footer-wrap, .telebox-titlebar-wrap { display: none }
                         `;
                     }
-
-                    const manager = await mountWindowManager(room, roomCallbackHandler, windowParams );       
-                    roomState = { ...roomState, ...{ windowBoxState: manager.boxState }, cameraState: manager.cameraState, sceneState: manager.sceneState, ...{ pageState: manager.pageState } };
+                    
+                    const manager = await mountWindowManager(room, roomCallbackHandler, windowParams );    
+                    roomState = { ...roomState, ...{ windowBoxState: manager.boxState }, cameraState: manager.cameraState, sceneState: manager.sceneState, ...{ pageState: manager.pageState, appState: createAppState()} };
 
                     if (fullscreen) {
                         manager.setMaximized(true);
@@ -344,11 +350,8 @@ class SDKBridge {
                                         fullWorkerUrl,
                                         subWorkerUrl,
                                     },
-                                    syncOpt: {
-                                        interval: 0
-                                    }
-                                },
-                                logger: (room as any).logger,
+                                    ...appliancePluginOptions,
+                                }
                             }
                         );
                         window.appliancePlugin = plugin;

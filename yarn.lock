@@ -1149,11 +1149,12 @@
   version "0.1.93"
   resolved "https://codeload.github.com/veytu/app-talkative/tar.gz/a3954fa83099e348d4dc4f9984e55e9b78e524ad"
 
-"@netless/appliance-plugin@1.1.18":
-  version "1.1.18"
-  resolved "https://registry.yarnpkg.com/@netless/appliance-plugin/-/appliance-plugin-1.1.18.tgz#524fc2ad124c0d0223141d47390756fdc4551a3b"
-  integrity sha512-MuuBcAJNuL+uOeS6wMduGTYFlE0u55lj+twSW5TKeiY8ThtSP31Rz7xY/xURfTmBUmUK9cBhIqhfAQCWZdDrZA==
+"@netless/appliance-plugin@^1.1.21":
+  version "1.1.21"
+  resolved "https://registry.yarnpkg.com/@netless/appliance-plugin/-/appliance-plugin-1.1.21.tgz#273f3b37aaca27134364c2838777c422efcee765"
+  integrity sha512-XyKRA3DPFPU8ziSSvcaRRRfsFmfQHZUxrdy3uGDfUGvME891p9I2e0bNPGteHYapqbiGEg8eEQqT2tlTsEKzow==
   dependencies:
+    clipper-lib "^6.4.2"
     clipper-lib "^6.4.2"
     eventemitter2 "^6.4.9"
     lineclip "^1.1.5"
@@ -1164,6 +1165,7 @@
     react-dom "^16.8.0"
     react-draggable "^4.4.6"
     spritejs "^3.8.3"
+    xss "^1.0.15"
     xss "^1.0.15"
 
 "@netless/canvas-polyfill@^0.0.4":
@@ -2524,6 +2526,7 @@ commander@2.11.x:
   resolved "https://registry.npmjs.org/commander/-/commander-2.11.0.tgz"
   integrity sha512-b0553uYA5YAEGgyYIGYROzKQ7X5RAqedkfjiZxwi0kL1g3bOaBNNZfYkzt/CL0umgD5wc9Jec2FbB98CjkMRvQ==
 
+commander@^2.12.1, commander@^2.20.0, commander@^2.20.3:
 commander@^2.12.1, commander@^2.20.0, commander@^2.20.3:
   version "2.20.3"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
@@ -6959,10 +6962,10 @@ which@^2.0.1:
   dependencies:
     isexe "^2.0.0"
 
-white-web-sdk@2.16.52:
-  version "2.16.52"
-  resolved "https://registry.npmjs.org/white-web-sdk/-/white-web-sdk-2.16.52.tgz#4b0ec6336587d31b21db6d42f04acc97712d5aa9"
-  integrity sha512-P15j3ytAYzPgSi5jaxvhZd+3yt7eYznenAf9LnGFMxqUt+OtuTAQl1JmAhexfpsfHAvMPEBpcw+Kh8cwiFsrHw==
+white-web-sdk@2.16.53:
+  version "2.16.53"
+  resolved "https://registry.npmjs.org/white-web-sdk/-/white-web-sdk-2.16.53.tgz"
+  integrity sha512-ACYemnxcCyWu5TKgbIIwa2I4MMmmYOwbZVqAtBZDnV++eT1iTtRES8CBhwKqJSUPrVqR0elz7E5vre7EXl6rzA==
   dependencies:
     "@juggle/resize-observer" "^3.3.1"
     "@netless/canvas-polyfill" "^0.0.4"
