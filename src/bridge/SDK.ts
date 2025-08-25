@@ -343,6 +343,7 @@ class SDKBridge {
                         const plugin = await ApplianceMultiPlugin.getInstance(manager,
                             {
                                 options: {
+                                    // @ts-ignore
                                     canvasOpt: {
                                         contextType: "2d",
                                     },
