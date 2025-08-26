@@ -355,6 +355,7 @@ class SDKBridge {
                                 }
                             }
                         );
+                        manager.room.syncMode = true;
                         window.appliancePlugin = plugin;
                         if (plugin.injectMethodToObject) {
                             plugin.injectMethodToObject(window, "requestIdleCallback")
