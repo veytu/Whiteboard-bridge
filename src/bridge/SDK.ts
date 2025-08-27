@@ -36,10 +36,6 @@ import fullWorkerString from '@netless/appliance-plugin/dist/fullWorker.js?raw';
 import subWorkerString from '@netless/appliance-plugin/dist/subWorker.js?raw';
 
 import { PCMProxy } from '../PCMProxy';
-const fullWorkerBlob = new Blob([fullWorkerString], { type: 'text/javascript' });
-const fullWorkerUrl = URL.createObjectURL(fullWorkerBlob);
-const subWorkerBlob = new Blob([subWorkerString], { type: 'text/javascript' });
-const subWorkerUrl = URL.createObjectURL(subWorkerBlob);
 
 interface ExtraNativeJoinRoomParams {
   appliancePluginOptions?: Record<string, any>;
@@ -340,6 +336,10 @@ class SDKBridge {
                     }
                     const enableAppliancePlugin = true
                     if (enableAppliancePlugin) {
+                        const fullWorkerBlob = new Blob([fullWorkerString], { type: 'text/javascript' });
+                        const fullWorkerUrl = URL.createObjectURL(fullWorkerBlob);
+                        const subWorkerBlob = new Blob([subWorkerString], { type: 'text/javascript' });
+                        const subWorkerUrl = URL.createObjectURL(subWorkerBlob);
                         const plugin = await ApplianceMultiPlugin.getInstance(manager,
                             {
                                 options: {
