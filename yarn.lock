@@ -1111,8 +1111,8 @@
     value-enhancer "^3.1.2"
 
 "@netless/telebox-insider@github:veytu/telebox-insider":
-  version "0.2.684"
-  resolved "https://codeload.github.com/veytu/telebox-insider/tar.gz/8b00134f8074111c149352e2792acd0313ae7df6"
+  version "0.2.685"
+  resolved "https://codeload.github.com/veytu/telebox-insider/tar.gz/300eec24297b3314593da9b6769abb127755811b"
 
 "@netless/video-js-plugin@0.3.8":
   version "0.3.8"
@@ -1155,8 +1155,8 @@
   integrity sha512-ZfJt/fD824oqLFW6Jl09cpWB9t30G+lwSUzLiWI1PpakhdlxX3lC9XMH8FtWGghYbzzXFEDh6Ay2N02F87II7g==
 
 "@netless/window-manager@github:veytu/window-manager":
-  version "1.1.626"
-  resolved "https://codeload.github.com/veytu/window-manager/tar.gz/57adcb0419759ded13f9fa951735c3307ddadd68"
+  version "1.1.629"
+  resolved "https://codeload.github.com/veytu/window-manager/tar.gz/489e4cdda150076622ce23c3125876543d42d452"
   dependencies:
     "@juggle/resize-observer" "^3.3.1"
     "@netless/app-plyr" "github:veytu/app-plyr"
@@ -4844,7 +4844,7 @@ minimalistic-assert@^1.0.0:
   resolved "https://registry.yarnpkg.com/minimalistic-assert/-/minimalistic-assert-1.0.1.tgz#2e194de044626d4a10e7f7fbc00ce73e83e4d5c7"
   integrity sha512-UtJcAD4yEaGtjPezWuO9wC4nwUnVH/8/Im3yEHQP4b67cXlD/Qr9hdITCU1xDbSEXg2XKNaP8jsReV7vQd00/A==
 
-minimatch@*:
+minimatch@*, minimatch@^10.0.3:
   version "10.0.3"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-10.0.3.tgz#cf7a0314a16c4d9ab73a7730a0e8e3c3502d47aa"
   integrity sha512-IPZ167aShDZZUMdRk66cyQAW3qr0WzbHkPdMYa8bzZhlHhO3jALbKdxcaak7W9FfT2rZNpQuUu4Od7ILEpXSaw==
