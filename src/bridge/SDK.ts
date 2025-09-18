@@ -36,6 +36,7 @@ import fullWorkerString from '@netless/appliance-plugin/dist/fullWorker.js?raw';
 import subWorkerString from '@netless/appliance-plugin/dist/subWorker.js?raw';
 
 import { PCMProxy } from '../PCMProxy';
+import Plyr from '@netless/app-plyr';
 
 interface ExtraNativeJoinRoomParams {
   appliancePluginOptions?: Record<string, any>;
@@ -212,6 +213,10 @@ class SDKBridge {
             appOptions: {
                 debug: false,
             },
+        });
+        WindowManager.register({
+            kind: Plyr.kind,
+            src:  Plyr,
         });
         WindowManager.register({
             kind: "AppIframeBridge",
