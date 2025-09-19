@@ -21,10 +21,10 @@
     "**/video.js": "7.10.0"
   },
   "dependencies": {
-    "@netless/app-iframe-bridge": "github:veytu/app-iframe-bridge",
-    "@netless/app-plyr": "github:veytu/app-plyr",
-    "@netless/app-slide": "github:veytu/app-slide",
-    "@netless/app-talkative": "github:veytu/app-talkative.git",
+    "@netless/app-iframe-bridge": "0.0.4-wukongBeta.1",
+    "@netless/app-plyr": "0.2.5-wukongBeta.5",
+    "@netless/app-slide": "0.2.81-wukongBeta.12",
+    "@netless/app-talkative": "0.1.93-wukongBeta.2",
     "@netless/appliance-plugin": "^1.1.21",
     "@netless/combine-player": "^1.1.1",
     "@netless/cursor-tool": "^0.1.1",
@@ -38,7 +38,7 @@
     "@netless/white-prepare": "^1.0.2",
     "@netless/white-video-plugin": "^1.2.4",
     "@netless/white-video-plugin2": "^2.0.4",
-    "@netless/window-manager": "github:veytu/window-manager",
+    "@netless/window-manager": "1.0.6-wukongBeta.6",
     "buffer": "^6.0.3",
     "core-js": "^3",
     "html2canvas": "^1.3.3",
