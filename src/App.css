@@ -13,4 +13,11 @@ textarea {
 
 body {
   margin: 0;
+  font-family: 'Noto Sans SC';
+}
+
+@font-face {
+  font-family: 'Noto Sans SC';
+  src: url('https://solutions-apaas.agora.io/wukong/static/notoSansSc.woff2');
+  font-display: swap;
 }
