@@ -1053,10 +1053,10 @@
   resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-talkative/-/@netless/app-talkative-0.1.93-wukongBeta.2.tgz#da1cd256fac722e1ebf93c1c801b778cd9c37ddd"
   integrity sha512-HxCmrPkuBbv026foe5mSiwzLmPZwR4vZjvb4oNg8PIaoWBBYRjnUUC683lpNZvpHXalIO5u3682hLo8umLC0ig==
 
-"@netless/appliance-plugin@^1.1.21":
-  version "1.1.21"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/appliance-plugin/-/appliance-plugin-1.1.21.tgz#273f3b37aaca27134364c2838777c422efcee765"
-  integrity sha512-XyKRA3DPFPU8ziSSvcaRRRfsFmfQHZUxrdy3uGDfUGvME891p9I2e0bNPGteHYapqbiGEg8eEQqT2tlTsEKzow==
+"@netless/appliance-plugin@1.1.22-beta.3":
+  version "1.1.22-beta.3"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/appliance-plugin/-/appliance-plugin-1.1.22-beta.3.tgz#a0a07295865add8167069455b63af6711d6a5e21"
+  integrity sha512-Odfejira5XSBa1wsrJsu/f4WVmXrfkyYpMtgEg/0riRHWKtrkyW+AGPwy6YDRb5wwM8Wc/P0EMB1YyFXlCJ4Bw==
   dependencies:
     clipper-lib "^6.4.2"
     eventemitter2 "^6.4.9"
