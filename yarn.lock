@@ -1159,10 +1159,10 @@
   resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/whiteboard-bridge-types/-/whiteboard-bridge-types-0.1.13.tgz#1cdd62af47c6247032da14660549676900945f20"
   integrity sha512-ZfJt/fD824oqLFW6Jl09cpWB9t30G+lwSUzLiWI1PpakhdlxX3lC9XMH8FtWGghYbzzXFEDh6Ay2N02F87II7g==
 
-"@netless/window-manager@1.0.6-wukongBeta.6":
-  version "1.0.6-wukongBeta.6"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/window-manager/-/@netless/window-manager-1.0.6-wukongBeta.6.tgz#202d92fe1dd3015d82551af7886b2f14cf3476fb"
-  integrity sha512-OiEYY+aF/BdpoC75vGJbuJjbbqxYBoTWezfb3WlflgKciVB1wKH3onI58itTREnZeOPkh7uewxN4gozna+ghkg==
+"@netless/window-manager@1.0.6-wukongBeta.15":
+  version "1.0.6-wukongBeta.15"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/window-manager/-/@netless/window-manager-1.0.6-wukongBeta.15.tgz#7020dfd920fc1f354dc23be0228c133ce6631c37"
+  integrity sha512-O5RhvWhPOGGgm0HXq+j/68/B7rTGwxI58MZ0NDoFcj0M3Zf4aCaxox8O2FmvN/VA21VllwElor+tX8ikGpGnKw==
   dependencies:
     "@juggle/resize-observer" "^3.4.0"
     "@netless/telebox-insider" "0.2.32-wukongBeta.8"
