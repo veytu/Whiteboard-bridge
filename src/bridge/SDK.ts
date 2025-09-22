@@ -120,9 +120,9 @@ class SDKBridge {
 
         const slideUrlInterrupter = async (url: string) => {
             if (config.enableSlideInterrupterAPI) {
-                const modifyUrl = await sdkCallbackHandler.slideUrlInterrupter(url);
-                console.log("slideUrlInterrupter", url, modifyUrl);
-                return modifyUrl.length > 0 ? modifyUrl : url;
+              const modifyUrl = await sdkCallbackHandler.slideUrlInterrupter(url);
+              console.log("slideUrlInterrupter", url, modifyUrl);
+              return modifyUrl.length > 0 ? modifyUrl : url;
             }
             return url;
         };
@@ -144,7 +144,7 @@ class SDKBridge {
         if (enableImgErrorCallback) {
             hookCreateElement();
         }
-
+        
         cursorAdapter = !!userCursor ? new CursorTool() : undefined;
 
         if (__nativeTags) {
@@ -205,13 +205,6 @@ class SDKBridge {
             addHooks: addHooksSlide,
             src: async () => {
                 return SlideApp;
-            },
-        });
-        WindowManager.register({
-            kind: 'Talkative',
-            src: async () => Talkative,
-            appOptions: {
-                debug: false,
             },
         });
         WindowManager.register({
@@ -303,7 +296,7 @@ class SDKBridge {
         const invisiblePlugins = [
             ...useMultiViews ? [WindowManager as any] : [],
         ]
-
+        
         window.nativeWebSocket = nativeWebSocket;
 
         const roomCallbackHandler = new RoomCallbackHandler();
@@ -348,10 +341,6 @@ class SDKBridge {
                         const plugin = await ApplianceMultiPlugin.getInstance(manager,
                             {
                                 options: {
-                                    // @ts-ignore
-                                    canvasOpt: {
-                                        contextType: "2d",
-                                    },
                                     cdn: {
                                         fullWorkerUrl,
                                         subWorkerUrl,
@@ -459,7 +448,7 @@ class SDKBridge {
             } else {
                 registerPlayerBridge(mPlayer, undefined, lastSchedule, replayCallbackHanlder);
             }
-
+       
             const {progressTime: scheduleTime, timeDuration, framesCount, beginTimestamp} = mPlayer;
             return responseCallback(JSON.stringify({timeInfo: {scheduleTime, timeDuration, framesCount, beginTimestamp}}));
         }).catch((e: Error) => {
