@@ -1048,10 +1048,10 @@
   resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-slide/-/@netless/app-slide-0.2.81-wukongBeta.13.tgz#a37678b4c508c2437e3d34075042ffea9d5eaa02"
   integrity sha512-UqMbAXXC1jiBRfeOcg+Igvs8N92oS7gDDqIhUCQcgR+qbxZ4uR3b8QcGosheteSfrz2a+9KsuQMJshuQdFbBhg==
 
-"@netless/app-talkative@0.1.93-wukongBeta.2":
-  version "0.1.93-wukongBeta.2"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-talkative/-/@netless/app-talkative-0.1.93-wukongBeta.2.tgz#da1cd256fac722e1ebf93c1c801b778cd9c37ddd"
-  integrity sha512-HxCmrPkuBbv026foe5mSiwzLmPZwR4vZjvb4oNg8PIaoWBBYRjnUUC683lpNZvpHXalIO5u3682hLo8umLC0ig==
+"@netless/app-talkative@0.1.93-wukongBeta.3":
+  version "0.1.93-wukongBeta.3"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-talkative/-/@netless/app-talkative-0.1.93-wukongBeta.3.tgz#82cada027e46d8d6aff5281743a1184f33294a05"
+  integrity sha512-tHqFS0U0t4BI9YjwDVRY+eSli0Nvec3B97NaW3XmioZbxewnv9jvMLCfgPhYDv8M7so5tjnIQrdHW8U/zy7kTw==
 
 "@netless/appliance-plugin@1.1.22-beta.3":
   version "1.1.22-beta.3"

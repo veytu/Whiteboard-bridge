@@ -208,6 +208,13 @@ class SDKBridge {
             },
         });
         WindowManager.register({
+            kind: 'Talkative',
+            src: async () => Talkative,
+            appOptions: {
+                debug: false,
+            },
+        });
+        WindowManager.register({
             kind: Plyr.kind,
             src:  Plyr,
         });
