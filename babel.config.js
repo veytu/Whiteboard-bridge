@@ -9,6 +9,11 @@ module.exports = {
         {
             "useBuiltIns": "entry",
             "corejs": 3,
+            "modules": "commonjs",
+            "targets": {
+                "android": "4.4",
+                "ios": "9"
+            }
         }],
         "@babel/preset-typescript",
         "@babel/preset-react"

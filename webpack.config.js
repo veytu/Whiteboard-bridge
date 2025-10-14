@@ -27,6 +27,9 @@ config = {
       "@netless/appliance-plugin/dist/subWorker.js": require.resolve("@netless/appliance-plugin").replace("appliance-plugin.js", "subWorker.js"),
       "@netless/appliance-plugin/dist/fullWorker.js": require.resolve("@netless/appliance-plugin").replace("appliance-plugin.js", "fullWorker.js"),
       "@netless/appliance-plugin": require.resolve("@netless/appliance-plugin"),
+      
+      "@wukong/custom-packages/dist/style.css": require.resolve("@wukong/custom-packages").replace("custom-packages.js", "style.css"),
+      "@wukong/custom-packages": require.resolve("@wukong/custom-packages"),
     },
     extensions: ['.ts', '.tsx', '.js', "cjs"],
     fallback: {
@@ -86,6 +89,14 @@ config = {
       {
         test: /\.(ts|js|cjs)x?$/,
         resourceQuery: { not: [/raw/] },
+        exclude: function(modulePath) {
+          // 排除 node_modules，但保留需要转译的包
+          if (/node_modules/.test(modulePath)) {
+            // 明确包含需要转译为 ES5 的包
+            return !/@wukong\/custom-packages/.test(modulePath);
+          }
+          return false;
+        },
         use: [
           "thread-loader",
           'babel-loader',
@@ -118,7 +129,13 @@ config = {
 module.exports = (env, argv) => {
   if (argv.mode === 'development') {
     config.output.filename = '[name].[hash].js';
-    config.module.rules[0].exclude = /node_modules/;
+    // 开发模式下也需要保持对 @wukong/custom-packages 的转译
+    config.module.rules[0].exclude = function(modulePath) {
+      if (/node_modules/.test(modulePath)) {
+        return !/@wukong\/custom-packages/.test(modulePath);
+      }
+      return false;
+    };
   }
   config.plugins.push(new DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify(argv.mode),

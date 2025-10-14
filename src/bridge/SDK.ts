@@ -1,20 +1,18 @@
 import { hookCreateElement } from '../utils/ImgError';
 import { CursorTool } from "@netless/cursor-tool";
 import { asyncCall, call, registerAsyn } from '.';
-import { NativeSDKConfig, NativeJoinRoomParams, NativeReplayParams, AppRegisterParams, NativeSlideAppOptions } from "@netless/whiteboard-bridge-types";
+import { NativeSDKConfig, NativeJoinRoomParams, NativeReplayParams, AppRegisterParams } from "@netless/whiteboard-bridge-types";
 import { WhiteWebSdk, Room, Player, createPlugins, PlayerPhase, setAsyncModuleLoadMode, AsyncModuleLoadMode } from "white-web-sdk";
 import { videoPlugin } from "@netless/white-video-plugin";
 import { audioPlugin } from "@netless/white-audio-plugin";
 import { videoPlugin2 } from "@netless/white-video-plugin2";
 import { audioPlugin2 } from "@netless/white-audio-plugin2";
 import { videoJsPlugin } from "@netless/video-js-plugin";
-import SlideApp, { addHooks as addHooksSlide, usePlugin } from "@netless/app-slide";
-import Talkative from '@netless/app-talkative'
+import { usePlugin } from "@netless/app-slide";
 import { EffectPlugin, MixingPlugin } from '@netless/slide-rtc-plugin';
 import { AppProxy, MountParams, WindowManager } from "@netless/window-manager";
 import { SyncedStorePlugin } from "@netless/synced-store";
 import { IframeBridge, IframeWrapper } from "@netless/iframe-bridge";
-import AppIframeBridge from '@netless/app-iframe-bridge';
 import { logger, enableReport } from "../utils/Logger";
 import { convertBound } from "../utils/BoundConvert";
 import { addManagerListener, createAppState } from "./Manager";
@@ -36,8 +34,8 @@ import fullWorkerString from '@netless/appliance-plugin/dist/fullWorker.js?raw';
 import subWorkerString from '@netless/appliance-plugin/dist/subWorker.js?raw';
 
 import { PCMProxy } from '../PCMProxy';
-import Plyr from '@netless/app-plyr';
-import { getScenePathRoleInfo, UserOptionsUtils, WkCustomAppManager, WkCustomTeleBoxManager, WKWindowManagerStore, WKWindowManagerStoreOptionsFuncs } from '@wukong/custom-packages';
+import { getScenePathRoleInfo, UserOptionsUtils, WkCustomAppManager, WkCustomTeleBoxManager, WKWindowManagerStore } from '@wukong/custom-packages';
+import type { WKWindowManagerStoreOptionsFuncs } from '@wukong/custom-packages';
 
 interface ExtraNativeJoinRoomParams {
     appliancePluginOptions?: Record<string, any>;
@@ -95,20 +93,26 @@ function removeBind() {
 
 async function mountWindowManager(room: Room, handler: RoomCallbackHandler | ReplayerCallbackHandler, windowParams?: Omit<Omit<MountParams, "room">, "container"> | undefined) {
     const enableAppliancePlugin = true
+    call(`wuKongOptions.sendMessageToNative`, JSON.stringify({method: NativeWebBridgeMethod.consoleLog, data: "初始化WindowManager"}));
+    wkWindowManagerStoreBridge = new WKWindowManagerStoreBridge();
+    wkWindowManagerStoreBridge.sendMessageToNative(NativeWebBridgeMethod.consoleLog, "初始化WkWindowManagerStoreBridge");
     const manager = await WindowManager.mount({
         // 高比宽
-        containerSizeRatio: 9 / 16,
+        containerSizeRatio: 2 / 3,
         chessboard: true,
-        cursor: !!cursorAdapter,
+        // cursor: !!cursorAdapter,
         supportAppliancePlugin: enableAppliancePlugin,
         ...windowParams,
         container: divRef(),
         room,
+        useBoxesStatus: true,
+        cursor: false,
     }, {
         TeleBoxManager: WkCustomTeleBoxManager,
         AppManager: WkCustomAppManager
     }
     );
+    wkWindowManagerStoreBridge.sendMessageToNative(NativeWebBridgeMethod.consoleLog, "初始化WindowManager完成");
     addManagerListener(manager, logger, handler);
     return manager;
 }
@@ -197,11 +201,10 @@ class SDKBridge {
         window.plugins = plugins;
 
 
-        wkWindowManagerStoreBridge = new WKWindowManagerStoreBridge();
 
 
-        // const slideAppOptions = config.slideAppOptions || {} ;
-        // const slideKind = "Slide";
+        const slideAppOptions = config.slideAppOptions || {} ;
+        const slideKind = "Slide";
         // WindowManager.register({
         //     kind: slideKind,
         //     appOptions: {
@@ -325,6 +328,7 @@ class SDKBridge {
             cursorAdapter: useMultiViews ? undefined : cursorAdapter,
             cameraBound: convertBound(cameraBound),
             disableMagixEventDispatchLimit: useMultiViews,
+            floatBar: false,
         }, { ...roomCallbackHandler, ...sdkCallbackHandler }).then(async aRoom => {
             removeBind();
             room = aRoom;
@@ -673,7 +677,14 @@ class WKWindowManagerStoreBridge {
 
     constructor() {
         UserOptionsUtils.setCheckPermissionCallback((permission?: string[]) => {
-            return this.receiveMessageFromNative(NativeWebBridgeMethod.getHavePermission, JSON.stringify(permission)) as Promise<boolean>
+            return new Promise(async (resolve) => {
+                const result = await this.receiveMessageFromNative(NativeWebBridgeMethod.getHavePermission, JSON.stringify(permission))
+                if(result+'' === 'true') {
+                    resolve(true)
+                } else {
+                    resolve(false)
+                }
+            })
         })
         UserOptionsUtils.setGetCurrentUserInfoCallback(() => {
             return this.receiveMessageFromNative(NativeWebBridgeMethod.getCurrentUserInfo, JSON.stringify({})) as Promise<any>
@@ -686,19 +697,24 @@ class WKWindowManagerStoreBridge {
         UserOptionsUtils.setIsTeacherCallback(() => {
             return this.receiveMessageFromNative(NativeWebBridgeMethod.getIsTeacher, JSON.stringify({})) as Promise<boolean>
         })
+        this.sendMessageToNative(NativeWebBridgeMethod.consoleLog, "初始化UserOptionsUtils完成");
         if (this.wkWindowManagerStore) {
             return
         }
+        this.sendMessageToNative(NativeWebBridgeMethod.consoleLog, "开始注册WKWindowManager");
         WKWindowManagerStore.registerAll(this._wkWindowManagerStoreOptionsFuncs)
+        this.sendMessageToNative(NativeWebBridgeMethod.consoleLog, "注册WKWindowManager完成，开始初始化WKWindowManagerStore");
         this.wkWindowManagerStore = new WKWindowManagerStore(() => {
             return window.manager as WindowManager
         }, (isInitialized: boolean) => {
+            this.sendMessageToNative(NativeWebBridgeMethod.consoleLog,`初始化WKWindowManagerStore完成，isInitialized: ${isInitialized}`);
             if (isInitialized) {
                 this.registerListenerAll()
             } else {
                 this.unregisterListenerAll()
             }
         })
+        this.sendMessageToNative(NativeWebBridgeMethod.consoleLog, "初始化WKWindowManagerStore完成");
         //设置白板打开课件的筛选条件
         this.wkWindowManagerStore?.setFilterAppsFun((app: AppProxy) => {
             if (app) {
@@ -722,6 +738,7 @@ class WKWindowManagerStoreBridge {
      */
     private onBoxChangeListener(data: { maxMaxTopBox?: any, maxNomalTopBox?: any }) {
         console.info('WhiteboardStore ~ onBoxChangeListener ~ data:', data)
+        // this.sendMessageToNative(NativeWebBridgeMethod.consoleLog, `监听焦点缩放比例，data: ${JSON.stringify(data)}`);
     }
 
     /**
@@ -729,12 +746,15 @@ class WKWindowManagerStoreBridge {
      */
     private onScaleChangeListener(appId: string, _ratio: number) {
         console.info('WhiteboardStore ~ onScaleChangeListener ~ appId:', appId)
+        // this.sendMessageToNative(NativeWebBridgeMethod.consoleLog, `监听缩放比例，appId: ${appId}, _ratio: ${_ratio}`);
     }
 
     /**
      * 监听页面变化
      */
     private onPageChangeListener(_appId: string, _scenePath: string) {
+        console.info('WhiteboardStore ~ onPageChangeListener ~ _appId:', _appId)
+        // this.sendMessageToNative(NativeWebBridgeMethod.consoleLog, `监听页面变化，_appId: ${_appId}, _scenePath: ${_scenePath}`);
     }
 
     /**
@@ -743,6 +763,8 @@ class WKWindowManagerStoreBridge {
      */
     private onMemberStateChangeListener(memberState: any) {
         console.info('WhiteboardStore ~ onMemberStateChangeListener ~ memberState:', memberState)
+        // this.sendMessageToNative(NativeWebBridgeMethod.consoleLog, `监听教具状态变化，memberState: ${JSON.stringify(memberState)}`);
+        // this.sendMessageToNative(NativeWebBridgeMethod.onMemberStateChange, memberState);
     }
 
     /**
@@ -751,6 +773,7 @@ class WKWindowManagerStoreBridge {
      */
     private onLaserPointerActiveChangeListener(active: boolean) {
         console.info('WhiteboardStore ~ onLaserPointerActiveChangeListener ~ active:', active)
+        // this.sendMessageToNative(NativeWebBridgeMethod.consoleLog, `监听激光笔激活状态变化，active: ${active}`);
     }
 
 
@@ -784,18 +807,28 @@ class WKWindowManagerStoreBridge {
      * @param method 方法名
      * @param data 数据
      */
-    private sendMessageToNative(method: NativeWebBridgeMethod, data?: any) {
-        logger('sendMessageToNative', method, data)
-        call(`wuKongOptions.sendMessageToNative`, JSON.stringify({method, data}));
+    public sendMessageToNative = async (method: NativeWebBridgeMethod, data?: any) => {
+        try {
+            logger('sendMessageToNative', method, data)
+            call(`wuKongOptions.sendMessageToNative`, JSON.stringify({method, data}));
+        } catch (error) {
+            logger('sendMessageToNativeError', method, data, error)
+        }
     }
     /**
      * 接收消息来自原生
      * @param data 数据
      */
-    private receiveMessageFromNative = async (method: NativeWebBridgeMethod, data: string) => {
-        logger('receiveMessageFromNative', method, data)
-        const result = await (asyncCall(`wuKongOptions.getInfoSync`, JSON.stringify({ method, data })) as Promise<string>)
-        logger('receiveMessageFromNativeResult', result)
+    public receiveMessageFromNative = async (method: NativeWebBridgeMethod, data: string) => { 
+        let result = '';
+        try {
+            logger('receiveMessageFromNative', method, data)
+            result = await (asyncCall(`wuKongOptions.getInfoSync`, JSON.stringify({ method, data })) as Promise<string>)
+            logger('receiveMessageFromNativeResult',method, data, result)
+            return result;
+        } catch (error) {
+            logger('receiveMessageFromNativeError', method, data, error)
+        }
         return new Promise((resolve) => {
             resolve(result);
         });
@@ -871,4 +904,17 @@ enum NativeWebBridgeMethod {
      * 返回：boolean
      */
     getIsTeacher = "getIsTeacher",
+
+    /**
+     * 控制台日志
+     * 参数：{
+     * message: string,
+     * }
+     */
+    consoleLog = "consoleLog",
+    /**
+     * 监听教具状态变化
+     * 参数：memberState
+     */
+    onMemberStateChange = "onMemberStateChange",
 }
