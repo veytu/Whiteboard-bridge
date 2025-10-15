@@ -1,6 +1,6 @@
 import { hookCreateElement } from '../utils/ImgError';
 import { CursorTool } from "@netless/cursor-tool";
-import { asyncCall, call, registerAsyn } from '.';
+import { asyncCall, call, register, registerAsyn } from '.';
 import { NativeSDKConfig, NativeJoinRoomParams, NativeReplayParams, AppRegisterParams } from "@netless/whiteboard-bridge-types";
 import { WhiteWebSdk, Room, Player, createPlugins, PlayerPhase, setAsyncModuleLoadMode, AsyncModuleLoadMode } from "white-web-sdk";
 import { videoPlugin } from "@netless/white-video-plugin";
@@ -8,7 +8,6 @@ import { audioPlugin } from "@netless/white-audio-plugin";
 import { videoPlugin2 } from "@netless/white-video-plugin2";
 import { audioPlugin2 } from "@netless/white-audio-plugin2";
 import { videoJsPlugin } from "@netless/video-js-plugin";
-import { usePlugin } from "@netless/app-slide";
 import { EffectPlugin, MixingPlugin } from '@netless/slide-rtc-plugin';
 import { AppProxy, MountParams, WindowManager } from "@netless/window-manager";
 import { SyncedStorePlugin } from "@netless/synced-store";
@@ -32,10 +31,14 @@ import { prepare } from '@netless/white-prepare';
 import { ApplianceMultiPlugin } from '@netless/appliance-plugin';
 import fullWorkerString from '@netless/appliance-plugin/dist/fullWorker.js?raw';
 import subWorkerString from '@netless/appliance-plugin/dist/subWorker.js?raw';
+import SlideApp, { addHooks as addHooksSlide, usePlugin}  from "@netless/app-slide";
 
 import { PCMProxy } from '../PCMProxy';
 import { getScenePathRoleInfo, UserOptionsUtils, WkCustomAppManager, WkCustomTeleBoxManager, WKWindowManagerStore } from '@wukong/custom-packages';
 import type { WKWindowManagerStoreOptionsFuncs } from '@wukong/custom-packages';
+import {NetlessAppPresentation} from '@netless/app-presentation';
+import Plyr from '@netless/app-plyr';
+import {install} from '@netless/app-presentation';
 
 interface ExtraNativeJoinRoomParams {
     appliancePluginOptions?: Record<string, any>;
@@ -94,7 +97,9 @@ function removeBind() {
 async function mountWindowManager(room: Room, handler: RoomCallbackHandler | ReplayerCallbackHandler, windowParams?: Omit<Omit<MountParams, "room">, "container"> | undefined) {
     const enableAppliancePlugin = true
     call(`wuKongOptions.sendMessageToNative`, JSON.stringify({method: NativeWebBridgeMethod.consoleLog, data: "初始化WindowManager"}));
-    wkWindowManagerStoreBridge = new WKWindowManagerStoreBridge();
+    if(!wkWindowManagerStoreBridge) {
+        wkWindowManagerStoreBridge = new WKWindowManagerStoreBridge();
+    }
     wkWindowManagerStoreBridge.sendMessageToNative(NativeWebBridgeMethod.consoleLog, "初始化WkWindowManagerStoreBridge");
     const manager = await WindowManager.mount({
         // 高比宽
@@ -203,32 +208,12 @@ class SDKBridge {
 
 
 
-        const slideAppOptions = config.slideAppOptions || {} ;
-        const slideKind = "Slide";
-        // WindowManager.register({
-        //     kind: slideKind,
-        //     appOptions: {
-        //         navigatorDelegate: {
-        //             openUrl: (url: string) => sdkCallbackHandler.slideOpenUrl(url),
-        //         },
-        //         urlInterrupter: slideUrlInterrupter,
-        //         ...slideAppOptions,
-        //     },
-        //     addHooks: addHooksSlide,
-        //     src: async () => {
-        //         return SlideApp;
-        //     },
-        // });
         // WindowManager.register({
         //     kind: 'Talkative',
         //     src: async () => Talkative,
         //     appOptions: {
         //         debug: false,
         //     },
-        // });
-        // WindowManager.register({
-        //     kind: Plyr.kind,
-        //     src:  Plyr,
         // });
         // WindowManager.register({
         //     kind: "AppIframeBridge",
@@ -271,6 +256,64 @@ class SDKBridge {
                 src: v.variable ? window[v.variable] : v.url,
             });
         }
+        if(!wkWindowManagerStoreBridge) {
+            wkWindowManagerStoreBridge = new WKWindowManagerStoreBridge();
+        }
+        WKWindowManagerStore.registerAll(wkWindowManagerStoreBridge.wkWindowManagerStoreOptionsFuncs);
+        const slideAppOptions = config.slideAppOptions || {} ;
+        const slideKind = "Slide";
+        WindowManager.register({
+            kind: slideKind,
+            appOptions: {
+                navigatorDelegate: {
+                    openUrl: (url: string) => sdkCallbackHandler.slideOpenUrl(url),
+                },
+                urlInterrupter: slideUrlInterrupter,
+                ...slideAppOptions,
+            },
+            addHooks: addHooksSlide,
+            src: async () => {
+                return SlideApp;
+            },
+        });
+        WindowManager.register({
+            kind: Plyr.kind,
+            src:  Plyr,
+        });
+        // WindowManager.register({
+        //     kind: "Presentation",
+        //     src: NetlessAppPresentation,
+        //     appOptions: {
+        //       useScrollbar: true,
+        //       debounceSync: true,
+        //       maxCameraScale: 5,
+        //       scrollbarEventCallback: {
+        //         onScrollCameraUpdated(
+        //           appId: string,
+        //           originScale: number,
+        //           scale: number,
+        //         ) {
+        //           console.info(
+        //             "onScrollCameraUpdated Presentation",
+        //             appId,
+        //             originScale,
+        //             scale,
+        //           );
+        //           wkWindowManagerStoreBridge?.wkWindowManagerStore?.scaleManager?._recordScaleInfo(appId);
+        //         },
+        //       },
+        //     },
+        //   });
+        //   install(WindowManager.register, { as: 'DocsViewer', appOptions: {
+        //     useScrollbar: true,
+        //     debounceSync: true,
+        //     maxCameraScale: 5,
+        //     scrollbarEventCallback: {
+        //       onScrollCameraUpdated(appId: string, originScale: number, scale: number) {
+        //         wkWindowManagerStoreBridge?.wkWindowManagerStore?.scaleManager?._recordScaleInfo(appId);
+        //       },
+        //     },
+        //   }});
 
         // 新增的插件需要确定是否依赖此状态
         const useMobXState = enableSyncedStore || enableIFramePlugin || useMultiViews
@@ -609,12 +652,12 @@ class WKWindowManagerStoreBridge {
     /**
      * 白板窗口管理器
      */
-    private wkWindowManagerStore: WKWindowManagerStore | undefined = undefined;
+    public wkWindowManagerStore: WKWindowManagerStore | undefined = undefined;
 
     /**
     * 窗口管理器选项函数
     */
-    private _wkWindowManagerStoreOptionsFuncs: WKWindowManagerStoreOptionsFuncs = {
+    public wkWindowManagerStoreOptionsFuncs: WKWindowManagerStoreOptionsFuncs = {
         sendTaskEvent: (_key: string, _state: number) => {
         },
         setIsTalkativeOpening: (_val: boolean) => {
@@ -702,7 +745,7 @@ class WKWindowManagerStoreBridge {
             return
         }
         this.sendMessageToNative(NativeWebBridgeMethod.consoleLog, "开始注册WKWindowManager");
-        WKWindowManagerStore.registerAll(this._wkWindowManagerStoreOptionsFuncs)
+        // WKWindowManagerStore.registerAll(this._wkWindowManagerStoreOptionsFuncs)
         this.sendMessageToNative(NativeWebBridgeMethod.consoleLog, "注册WKWindowManager完成，开始初始化WKWindowManagerStore");
         this.wkWindowManagerStore = new WKWindowManagerStore(() => {
             return window.manager as WindowManager
@@ -718,7 +761,7 @@ class WKWindowManagerStoreBridge {
         //设置白板打开课件的筛选条件
         this.wkWindowManagerStore?.setFilterAppsFun((app: AppProxy) => {
             if (app) {
-                if (app.kind == 'Slide' || app.kind == 'DocsViewer' || app.kind == 'Plyr') {
+                if (app.kind == 'Slide' || app.kind == 'Presentation' || app.kind == 'Plyr') {
                     const info = getScenePathRoleInfo(app.scenePath)
                     if (info) {
                         return {
