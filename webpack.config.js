@@ -10,6 +10,7 @@ const TerserJSPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const { DefinePlugin } = require('webpack');
+const packageJson = require('./package.json');
 
 config = {
   entry: './src/index',
@@ -139,7 +140,12 @@ module.exports = (env, argv) => {
   }
   config.plugins.push(new DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify(argv.mode),
-    'process.env.DEBUG': argv.mode === "development"
+    'process.env.DEBUG': argv.mode === "development",
+    '__PACKAGE_INFO__': JSON.stringify({
+      version: packageJson.version,
+      dependencies: packageJson.dependencies,
+      devDependencies: packageJson.devDependencies
+    })
   }))
   return config;
 }

@@ -5,6 +5,14 @@ import type { WKWindowManagerStoreOptionsFuncs } from '@wukong/custom-packages';
 import { call, asyncCall } from '..';
 import { logger } from '../../utils/Logger';
 import './index.css';
+
+// 声明全局变量类型
+declare const __PACKAGE_INFO__: {
+    version: string;
+    dependencies?: Record<string, string>;
+    devDependencies?: Record<string, string>;
+};
+
 /**
  * 白板窗口管理器桥接
  */
@@ -79,6 +87,9 @@ export class WKWindowManagerStoreBridge {
 
 
     constructor() {
+        // 打印版本和依赖信息
+        this._printVersionInfo();
+        
         UserOptionsUtils.setCheckPermissionCallback((permission?: string[]) => {
             return new Promise(async (resolve) => {
                 const result = await this.receiveMessageFromNative(NativeWebBridgeMethod.getHavePermission, JSON.stringify(permission))
@@ -224,6 +235,66 @@ export class WKWindowManagerStoreBridge {
      */
     public customShowLog(...optionalParams: any[]) {
         console.log(`[WhiteboardOptions] [WhiteBoardBridge]`, ...optionalParams)
+    }
+
+    /**
+     * 打印版本和依赖信息
+     */
+    private _printVersionInfo() {
+        try {
+            // 构建版本信息对象
+            const versionInfo: any = {
+                packageName: "whiteboard-bridge",
+                timestamp: new Date().toISOString(),
+            };
+
+            // 从构建时注入的全局变量获取 package.json 信息
+            if (typeof __PACKAGE_INFO__ !== "undefined") {
+                const packageInfo = __PACKAGE_INFO__;
+                versionInfo.packageVersion = packageInfo.version;
+                versionInfo.dependencies = packageInfo.dependencies || {};
+                versionInfo.devDependencies = packageInfo.devDependencies || {};
+                
+                // 统计信息
+                versionInfo.statistics = {
+                    totalDependencies: Object.keys(versionInfo.dependencies).length,
+                    totalDevDependencies: Object.keys(versionInfo.devDependencies).length,
+                    totalPackages: 
+                        Object.keys(versionInfo.dependencies).length +
+                        Object.keys(versionInfo.devDependencies).length,
+                };
+
+                // 详细的包列表
+                versionInfo.detailedPackages = {
+                    dependencies: this._formatPackageList(versionInfo.dependencies),
+                    devDependencies: this._formatPackageList(versionInfo.devDependencies),
+                };
+            }
+
+            // 使用 console.info 打印一条完整的版本信息
+            console.info("[WhiteboardOptions] Current Version Info", "whiteboard-bridge", JSON.stringify(versionInfo.packageVersion));
+            console.info("[WhiteboardOptions] Current Version Info", "whiteboard-bridge", JSON.stringify(versionInfo.dependencies));
+            console.info("[WhiteboardOptions] Current Version Info", "whiteboard-bridge", JSON.stringify(versionInfo.devDependencies));
+            console.info("[WhiteboardOptions] Current Version Info", "whiteboard-bridge", JSON.stringify(versionInfo.statistics));
+            console.info("[WhiteboardOptions] Current Version Info", "whiteboard-bridge", JSON.stringify(versionInfo.detailedPackages));
+        } catch (error) {
+            console.error(
+                "Current Version Info",
+                "whiteboard-bridge",
+                "Error:",
+                JSON.stringify(error),
+            );
+        }
+    }
+
+    /**
+     * 格式化包列表为数组格式
+     */
+    private _formatPackageList(packages: Record<string, string>): Array<{ name: string; version: string }> {
+        return Object.entries(packages).map(([name, version]) => ({
+            name,
+            version,
+        }));
     }
 
 
