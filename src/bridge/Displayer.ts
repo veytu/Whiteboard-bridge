@@ -158,12 +158,14 @@ export class DisplayerBridge {
     }
 
     moveCamera = (camera: Partial<Camera> & Readonly<{ animationMode?: AnimationMode }>) => {
+        console.log("xxxxxxxxxxxxxxxxxxx123", camera);
         this.aDisplayer.moveCamera(camera);
     }
 
     moveCameraToContain = (contain: Rectangle & Readonly<{
         animationMode?: AnimationMode;
     }>) => {
+        console.log("xxxxxxxxxxxxxxxxxxx123222",contain);
         this.aDisplayer.moveCameraToContain(contain);
     }
 

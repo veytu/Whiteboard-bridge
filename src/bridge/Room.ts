@@ -521,6 +521,7 @@ export class RoomAsyncBridge {
     }
 
     zoomChange = (scale: number) => {
+        console.log("xxxxxxxxxxxxxxxxxxx1234444", scale);
         this.room.moveCamera({ scale });
     }
 

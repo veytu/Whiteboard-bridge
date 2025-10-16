@@ -1,6 +1,6 @@
 import { hookCreateElement } from '../utils/ImgError';
 import { CursorTool } from "@netless/cursor-tool";
-import { asyncCall, call, register, registerAsyn } from '.';
+import { asyncCall, call, registerAsyn } from '.';
 import { NativeSDKConfig, NativeJoinRoomParams, NativeReplayParams, AppRegisterParams } from "@netless/whiteboard-bridge-types";
 import { WhiteWebSdk, Room, Player, createPlugins, PlayerPhase, setAsyncModuleLoadMode, AsyncModuleLoadMode } from "white-web-sdk";
 import { videoPlugin } from "@netless/white-video-plugin";
@@ -34,11 +34,10 @@ import subWorkerString from '@netless/appliance-plugin/dist/subWorker.js?raw';
 import SlideApp, { addHooks as addHooksSlide, usePlugin}  from "@netless/app-slide";
 
 import { PCMProxy } from '../PCMProxy';
-import { getScenePathRoleInfo, UserOptionsUtils, WkCustomAppManager, WkCustomTeleBoxManager, WKWindowManagerStore } from '@wukong/custom-packages';
-import type { WKWindowManagerStoreOptionsFuncs } from '@wukong/custom-packages';
-import {NetlessAppPresentation} from '@netless/app-presentation';
 import Plyr from '@netless/app-plyr';
-import {install} from '@netless/app-presentation';
+import { NativeWebBridgeMethod, WKWindowManagerStoreBridge } from './WKCustom';
+import { getScenePathRoleInfo, UserOptionsUtils, WkCustomAppManager, WkCustomTeleBoxManager, WKWindowManagerStore } from '@wukong/custom-packages';
+import {Talkative} from '@netless/app-talkative';
 
 interface ExtraNativeJoinRoomParams {
     appliancePluginOptions?: Record<string, any>;
@@ -96,11 +95,10 @@ function removeBind() {
 
 async function mountWindowManager(room: Room, handler: RoomCallbackHandler | ReplayerCallbackHandler, windowParams?: Omit<Omit<MountParams, "room">, "container"> | undefined) {
     const enableAppliancePlugin = true
-    call(`wuKongOptions.sendMessageToNative`, JSON.stringify({method: NativeWebBridgeMethod.consoleLog, data: "初始化WindowManager"}));
     if(!wkWindowManagerStoreBridge) {
         wkWindowManagerStoreBridge = new WKWindowManagerStoreBridge();
     }
-    wkWindowManagerStoreBridge.sendMessageToNative(NativeWebBridgeMethod.consoleLog, "初始化WkWindowManagerStoreBridge");
+    wkWindowManagerStoreBridge.customShowLog("初始化WkWindowManagerStoreBridge");
     const manager = await WindowManager.mount({
         // 高比宽
         containerSizeRatio: 2 / 3,
@@ -117,7 +115,8 @@ async function mountWindowManager(room: Room, handler: RoomCallbackHandler | Rep
         AppManager: WkCustomAppManager
     }
     );
-    wkWindowManagerStoreBridge.sendMessageToNative(NativeWebBridgeMethod.consoleLog, "初始化WindowManager完成");
+    manager.setReadonly(true);
+    wkWindowManagerStoreBridge.customShowLog("初始化WindowManager完成");
     addManagerListener(manager, logger, handler);
     return manager;
 }
@@ -219,35 +218,6 @@ class SDKBridge {
         //     kind: "AppIframeBridge",
         //     src: AppIframeBridge,
         // });
-        // WindowManager.register({
-        //     kind: 'Talkative',
-        //     src: Talkative,
-        //     appOptions: {
-        //         debug: false,
-        //         onLocalMessage: (_appId: string, event: Record<string, any>) => {
-        //             logger('talkativeOnLocalMessage', event)
-        //             const { data } = event
-        //             if (data && (data as any)?.cwd) {
-        //                 call("wuKongOptions.receiveTalkActiveInfo", JSON.stringify(data));
-        //             }
-        //         },
-        //         setReceivePostMessageFun: (fun: (message: unknown) => void) => {
-        //             logger('talkativeReceivePostMessageFun', fun)
-        //             //@ts-ignore
-        //             window.postMessageToTalkActive = fun
-        //         },
-        //         //获取同步信息
-        //         getInfoSync: async (configInfo: string) => {
-        //             //@ts-ignore
-        //             logger('talkativeGetInfoSyncConfig', configInfo)
-        //             const result = await (asyncCall("wuKongOptions.getInfoSync", configInfo) as Promise<string>)
-        //             logger('talkativeGetInfoSyncResult', result)
-        //             return new Promise((resolve) => {
-        //                 resolve(result);
-        //             });
-        //         }
-        //     },
-        // })
         // WindowManager.appReadonly = true
         for (const v of window.appRegisterParams || []) {
             WindowManager.register({
@@ -280,6 +250,35 @@ class SDKBridge {
             kind: Plyr.kind,
             src:  Plyr,
         });
+        // WindowManager.register({
+        //     kind: 'Talkative',
+        //     src: Talkative,
+        //     appOptions: {
+        //         debug: false,
+        //         onLocalMessage: (_appId: string, event: Record<string, any>) => {
+        //             logger('talkativeOnLocalMessage', event)
+        //             const { data } = event
+        //             if (data && (data as any)?.cwd) {
+        //                 call("wuKongOptions.receiveTalkActiveInfo", JSON.stringify(data));
+        //             }
+        //         },
+        //         setReceivePostMessageFun: (fun: (message: unknown) => void) => {
+        //             logger('talkativeReceivePostMessageFun', fun)
+        //             //@ts-ignore
+        //             window.postMessageToTalkActive = fun
+        //         },
+        //         //获取同步信息
+        //         getInfoSync: async (configInfo: string) => {
+        //             //@ts-ignore
+        //             logger('talkativeGetInfoSyncConfig', configInfo)
+        //             const result = await (asyncCall("wuKongOptions.getInfoSync", configInfo) as Promise<string>)
+        //             logger('talkativeGetInfoSyncResult', result)
+        //             return new Promise((resolve) => {
+        //                 resolve(result);
+        //             });
+        //         }
+        //     },
+        // })
         // WindowManager.register({
         //     kind: "Presentation",
         //     src: NetlessAppPresentation,
@@ -391,6 +390,10 @@ class SDKBridge {
 
                     const manager = await mountWindowManager(room, roomCallbackHandler, windowParams);
                     roomState = { ...roomState, ...{ windowBoxState: manager.boxState }, cameraState: manager.cameraState, sceneState: manager.sceneState, ...{ pageState: manager.pageState, appState: createAppState() } };
+
+                    manager.mainView.callbacks.on('onCameraUpdated', (cameraState: any) => {
+                        console.log("xxxxxxxxxxxxxxxxxxx1234444134234", cameraState);
+                    });
 
                     if (fullscreen) {
                         manager.setMaximized(true);
@@ -645,319 +648,3 @@ class SDKBridge {
 
 let wkWindowManagerStoreBridge: WKWindowManagerStoreBridge | undefined = undefined;
 
-/**
- * 白板窗口管理器桥接
- */
-class WKWindowManagerStoreBridge {
-    /**
-     * 白板窗口管理器
-     */
-    public wkWindowManagerStore: WKWindowManagerStore | undefined = undefined;
-
-    /**
-    * 窗口管理器选项函数
-    */
-    public wkWindowManagerStoreOptionsFuncs: WKWindowManagerStoreOptionsFuncs = {
-        sendTaskEvent: (_key: string, _state: number) => {
-        },
-        setIsTalkativeOpening: (_val: boolean) => {
-        },
-        onTalkativeLocalMessage: (_appId: string, event: Record<string, any>) => {
-            logger('talkativeOnLocalMessage', event);
-            const { data } = event;
-            if (data && (data as any)?.cwd) {
-                this.sendMessageToNative(NativeWebBridgeMethod.receiveTalkActiveInfo, data);
-            }
-        },
-        getTalkativeInfoSync: async (configInfo: string) => {
-            return this.receiveMessageFromNative(NativeWebBridgeMethod.getTalkativeInfoSync, configInfo);
-        },
-        getCurrentScenePathBackground: (_scenePath?: string) => {
-            return { color: '#fff', imageUrl: '' };
-        },
-        updateWhiteBoardSizeInfo: (_width: number, _height: number, _scale: number) => {
-        },
-        getFirstSetWhiteBoardSizeInfo: () => {
-            return { width: 0, height: 0, scale: 0 };
-        },
-        mainViewPageInfo: () => {
-            return { showIndex: 0, count: 1 };
-        },
-        mainViewNextPage: () => {
-        },
-        mainViewPrevPage: () => {
-        },
-        mainViewAddPage: () => {
-        },
-        /**
-         * 应用关闭
-         * @param closedAppId 关闭的appId
-         * @param appInfo 应用信息
-         */
-        onAppClose: (closedAppId: string, appInfo: AppProxy | undefined) => {
-            console.info('onAppClose', closedAppId, appInfo);
-            if (closedAppId.toLowerCase().includes('talkative')) {
-                this.sendMessageToNative(NativeWebBridgeMethod.onTalkativeClose, {
-                    appId: closedAppId,
-                });
-            }
-        },
-        onAppSetup: (appId: string, appInfo: AppProxy) => {
-            console.info('onAppSetup', appId, appInfo);
-        },
-        onWindowManagerInit: (windowManger: WindowManager) => {
-            window.manager = windowManger;
-            windowManger.emitter.on("onMainViewMounted", () => {
-                this.wkWindowManagerStore?.initial();
-                this.sendMessageToNative(NativeWebBridgeMethod.onMainViewMounted, {});
-                windowManger.emitter.off('onMainViewMounted', () => { });
-            });
-        },
-        setReceivePostMessageFun: function (_func: (message: unknown) => void): void {
-        }
-    }
-
-
-    constructor() {
-        UserOptionsUtils.setCheckPermissionCallback((permission?: string[]) => {
-            return new Promise(async (resolve) => {
-                const result = await this.receiveMessageFromNative(NativeWebBridgeMethod.getHavePermission, JSON.stringify(permission))
-                if(result+'' === 'true') {
-                    resolve(true)
-                } else {
-                    resolve(false)
-                }
-            })
-        })
-        UserOptionsUtils.setGetCurrentUserInfoCallback(() => {
-            return this.receiveMessageFromNative(NativeWebBridgeMethod.getCurrentUserInfo, JSON.stringify({})) as Promise<any>
-        })
-        this.receiveMessageFromNative(NativeWebBridgeMethod.getShowTextContent,
-            JSON.stringify(['whiteboard.error.textIsOtherEdited', 'error.courseware.limit.length',
-                'error.courseware.img.limit.length', 'loading', 'whiteboard.error.longPencil'])).then((text) => {
-                    UserOptionsUtils.setShowTextContent(JSON.parse(text as string))
-                })
-        UserOptionsUtils.setIsTeacherCallback(() => {
-            return this.receiveMessageFromNative(NativeWebBridgeMethod.getIsTeacher, JSON.stringify({})) as Promise<boolean>
-        })
-        this.sendMessageToNative(NativeWebBridgeMethod.consoleLog, "初始化UserOptionsUtils完成");
-        if (this.wkWindowManagerStore) {
-            return
-        }
-        this.sendMessageToNative(NativeWebBridgeMethod.consoleLog, "开始注册WKWindowManager");
-        // WKWindowManagerStore.registerAll(this._wkWindowManagerStoreOptionsFuncs)
-        this.sendMessageToNative(NativeWebBridgeMethod.consoleLog, "注册WKWindowManager完成，开始初始化WKWindowManagerStore");
-        this.wkWindowManagerStore = new WKWindowManagerStore(() => {
-            return window.manager as WindowManager
-        }, (isInitialized: boolean) => {
-            this.sendMessageToNative(NativeWebBridgeMethod.consoleLog,`初始化WKWindowManagerStore完成，isInitialized: ${isInitialized}`);
-            if (isInitialized) {
-                this.registerListenerAll()
-            } else {
-                this.unregisterListenerAll()
-            }
-        })
-        this.sendMessageToNative(NativeWebBridgeMethod.consoleLog, "初始化WKWindowManagerStore完成");
-        //设置白板打开课件的筛选条件
-        this.wkWindowManagerStore?.setFilterAppsFun((app: AppProxy) => {
-            if (app) {
-                if (app.kind == 'Slide' || app.kind == 'Presentation' || app.kind == 'Plyr') {
-                    const info = getScenePathRoleInfo(app.scenePath)
-                    if (info) {
-                        return {
-                            mainId: info.id,
-                            name: "",
-                            fileType: info.fileExt,
-                        }
-                    }
-                }
-            }
-            return undefined
-        })
-    }
-
-    /**
-     * 监听焦点缩放比例
-     */
-    private onBoxChangeListener(data: { maxMaxTopBox?: any, maxNomalTopBox?: any }) {
-        console.info('WhiteboardStore ~ onBoxChangeListener ~ data:', data)
-        // this.sendMessageToNative(NativeWebBridgeMethod.consoleLog, `监听焦点缩放比例，data: ${JSON.stringify(data)}`);
-    }
-
-    /**
-     * 监听缩放比例
-     */
-    private onScaleChangeListener(appId: string, _ratio: number) {
-        console.info('WhiteboardStore ~ onScaleChangeListener ~ appId:', appId)
-        // this.sendMessageToNative(NativeWebBridgeMethod.consoleLog, `监听缩放比例，appId: ${appId}, _ratio: ${_ratio}`);
-    }
-
-    /**
-     * 监听页面变化
-     */
-    private onPageChangeListener(_appId: string, _scenePath: string) {
-        console.info('WhiteboardStore ~ onPageChangeListener ~ _appId:', _appId)
-        // this.sendMessageToNative(NativeWebBridgeMethod.consoleLog, `监听页面变化，_appId: ${_appId}, _scenePath: ${_scenePath}`);
-    }
-
-    /**
-     * 监听教具状态变化
-     * @param memberState 教具状态
-     */
-    private onMemberStateChangeListener(memberState: any) {
-        console.info('WhiteboardStore ~ onMemberStateChangeListener ~ memberState:', memberState)
-        // this.sendMessageToNative(NativeWebBridgeMethod.consoleLog, `监听教具状态变化，memberState: ${JSON.stringify(memberState)}`);
-        // this.sendMessageToNative(NativeWebBridgeMethod.onMemberStateChange, memberState);
-    }
-
-    /**
-     * 监听激光笔激活状态变化
-     * @param active 激活状态
-     */
-    private onLaserPointerActiveChangeListener(active: boolean) {
-        console.info('WhiteboardStore ~ onLaserPointerActiveChangeListener ~ active:', active)
-        // this.sendMessageToNative(NativeWebBridgeMethod.consoleLog, `监听激光笔激活状态变化，active: ${active}`);
-    }
-
-
-
-    /**
-     * 注册所有监听
-     */
-    public registerListenerAll() {
-        this.wkWindowManagerStore?.classListManager?.addBoxChangeListener(this.onBoxChangeListener)
-        this.wkWindowManagerStore?.scaleManager?.addScaleChangeListener(this.onScaleChangeListener)
-        this.wkWindowManagerStore?.addPageChangeListener(this.onPageChangeListener)
-        this.wkWindowManagerStore?.addMemberStateChangeListener(this.onMemberStateChangeListener)
-        this.wkWindowManagerStore?.laserPointerManager?.addCallbackActiveListener(this.onLaserPointerActiveChangeListener)
-        this.onBoxChangeListener({ maxMaxTopBox: undefined, maxNomalTopBox: undefined })
-    }
-
-    /**
-     * 移除所有监听
-     */
-    public unregisterListenerAll() {
-        this.wkWindowManagerStore?.classListManager?.removeBoxChangeListener(this.onBoxChangeListener)
-        this.wkWindowManagerStore?.scaleManager?.removeScaleChangeListener(this.onScaleChangeListener)
-        this.wkWindowManagerStore?.removePageChangeListener(this.onPageChangeListener)
-        this.wkWindowManagerStore?.removeMemberStateChangeListener(this.onMemberStateChangeListener)
-        this.wkWindowManagerStore?.laserPointerManager?.removeCallbackActiveListener(this.onLaserPointerActiveChangeListener)
-    }
-
-
-    /**
-     * 发送消息给原生
-     * @param method 方法名
-     * @param data 数据
-     */
-    public sendMessageToNative = async (method: NativeWebBridgeMethod, data?: any) => {
-        try {
-            logger('sendMessageToNative', method, data)
-            call(`wuKongOptions.sendMessageToNative`, JSON.stringify({method, data}));
-        } catch (error) {
-            logger('sendMessageToNativeError', method, data, error)
-        }
-    }
-    /**
-     * 接收消息来自原生
-     * @param data 数据
-     */
-    public receiveMessageFromNative = async (method: NativeWebBridgeMethod, data: string) => { 
-        let result = '';
-        try {
-            logger('receiveMessageFromNative', method, data)
-            result = await (asyncCall(`wuKongOptions.getInfoSync`, JSON.stringify({ method, data })) as Promise<string>)
-            logger('receiveMessageFromNativeResult',method, data, result)
-            return result;
-        } catch (error) {
-            logger('receiveMessageFromNativeError', method, data, error)
-        }
-        return new Promise((resolve) => {
-            resolve(result);
-        });
-    }
-}
-/**
- * 原生 web 桥接方法
- */
-enum NativeWebBridgeMethod {
-
-    /**
-     * 接收 talkative 消息发送给原生
-     * 参数：data
-     * 
-     */
-    receiveTalkActiveInfo = 'receiveTalkActiveInfo',
-
-    /**
-     * 获取talkative同步信息
-     * 参数：configInfo
-     * 
-     */
-    getTalkativeInfoSync = 'getTalkativeInfoSync',
-
-    /**
-     * 监听到互动题关闭事件发送到原生
-     * 参数：{
-          appId: closedAppId,
-          appInfo: appInfo,
-        }
-     */
-    onTalkativeClose = 'onTalkativeClose',
-
-    /**
-     * 监听到主视图挂载事件发送到原生
-     * 参数：{}
-     */
-    onMainViewMounted = 'onMainViewMounted',
-
-    /**
-     * 获取是否有权限
-     * 参数：permission
-     * 返回：boolean
-     */
-    getHavePermission = 'getHavePermission',
-
-    /**
-     * 获取当前用户信息
-     * 返回：{
-     * userId: string,
-     * userName: string,
-     * userRole: string,
-     * }
-     */
-    getCurrentUserInfo = 'getCurrentUserInfo',
-    /**
-     * 获取显示文字内容
-     * 参数：['whiteboard.error.textIsOtherEdited', 'error.courseware.limit.length',
-     * 'error.courseware.img.limit.length', 'loading', 'whiteboard.error.longPencil']
-     * 返回：{
-     * 'whiteboard.error.textIsOtherEdited': 'text',
-     * 'error.courseware.limit.length': 'text',
-     * 'error.courseware.img.limit.length': 'text',
-     * 'loading': 'text',
-     * 'whiteboard.error.longPencil': 'text',
-     * }
-     */
-    getShowTextContent = "getShowTextContent",
-
-    /**
-     * 获取是否是老师
-     * 参数：{}
-     * 返回：boolean
-     */
-    getIsTeacher = "getIsTeacher",
-
-    /**
-     * 控制台日志
-     * 参数：{
-     * message: string,
-     * }
-     */
-    consoleLog = "consoleLog",
-    /**
-     * 监听教具状态变化
-     * 参数：memberState
-     */
-    onMemberStateChange = "onMemberStateChange",
-}

@@ -1055,10 +1055,10 @@
   resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-slide/-/app-slide-0.2.81.tgz#dc170d687dab5d3c50240c1246a99d4571eabc00"
   integrity sha512-5ib8P9XzhYa80/7hL4RJyMvNFrmJwtjIYxfdN2ZvXb07SXis0QR+UJctPoP9vSc+gPOgSi9BZXSNXr2a8x/vrQ==
 
-"@netless/app-talkative@0.1.93-wukongBeta.4":
-  version "0.1.93-wukongBeta.4"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-talkative/-/@netless/app-talkative-0.1.93-wukongBeta.4.tgz#46a73c8f44c9ea08a1016f25591048f8ce6f4f28"
-  integrity sha512-zuneW4Cy/WpG4yRriA0JDpo8TVrx+F2D/ajqI+scLud9JVsBXdQM9Qnx+0o+THE2QX5cvH53l9X8nJC+jB/Yig==
+"@netless/app-talkative@0.1.93-wukongBeta.5":
+  version "0.1.93-wukongBeta.5"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-talkative/-/@netless/app-talkative-0.1.93-wukongBeta.5.tgz#ab7a9aefb4f486bdf41c3cd1ab978149f48a62b6"
+  integrity sha512-jvKPoD158ley4o//VBnUJ2Cp+UgrQydRUenBSHDZIs7muaPR7cybIO7CTcdxAuDDkX5zVN5Ur2W+WDlOCMhE4A==
 
 "@netless/appliance-plugin@1.1.22-beta.8":
   version "1.1.22-beta.8"
@@ -1719,15 +1719,15 @@
   resolved "https://registry.npmjs.org/@webpack-cli/serve/-/serve-1.7.0.tgz#e1993689ac42d2b16e9194376cfb6753f6254db1"
   integrity sha512-oxnCNGj88fL+xzV+dacXs44HcDwf1ovs3AuEzvP7mqXw7fQntqIhQ1BRmynh4qEKQSSSRSWVyXRjmTbZIX9V2Q==
 
-"@wukong/custom-packages@1.0.0-beta.54":
-  version "1.0.0-beta.54"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@wukong/custom-packages/-/@wukong/custom-packages-1.0.0-beta.54.tgz#6aafaa764b42529e6682c05e4a71e7dec72b68f9"
-  integrity sha512-plMctLiuW69xTSdjOSjbo0c9wm3zMZ61Iw9dcO6hpGhkATyKH9Il+Adfx/XwCMvibPPKt+5nj33MoKzgeH53pQ==
+"@wukong/custom-packages@1.0.0-beta.64":
+  version "1.0.0-beta.64"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@wukong/custom-packages/-/@wukong/custom-packages-1.0.0-beta.64.tgz#1810ab250ee0b4fccfb516adc667bd16405d3821"
+  integrity sha512-0TPtVbQjQx3fzhJ5CY81l5uASSimhyLctTk9752PfD8FVGXZhfPuoAIUdHo/q6/1HMCMIpKtrTQhfXHbtAL4Cw==
   dependencies:
     "@netless/app-iframe-bridge" "0.0.4-wukongBeta.1"
     "@netless/app-plyr" "0.2.6-beta.3"
     "@netless/app-presentation" "0.1.9-beta.4"
-    "@netless/app-talkative" "0.1.93-wukongBeta.4"
+    "@netless/app-talkative" "0.1.93-wukongBeta.5"
     html2canvas "^1.4.1"
     lodash "^4.17.21"
     urijs "^1.19.11"
