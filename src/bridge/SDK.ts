@@ -100,8 +100,6 @@ async function mountWindowManager(room: Room, handler: RoomCallbackHandler | Rep
     }
     wkWindowManagerStoreBridge.customShowLog("初始化WkWindowManagerStoreBridge");
     const manager = await WindowManager.mount({
-        // 高比宽
-        containerSizeRatio: 2 / 3,
         chessboard: true,
         // cursor: !!cursorAdapter,
         supportAppliancePlugin: enableAppliancePlugin,
@@ -110,6 +108,8 @@ async function mountWindowManager(room: Room, handler: RoomCallbackHandler | Rep
         room,
         useBoxesStatus: true,
         cursor: false,
+        // 高比宽
+        containerSizeRatio: 2 / 3,
     }, {
         TeleBoxManager: WkCustomTeleBoxManager,
         AppManager: WkCustomAppManager
