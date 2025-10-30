@@ -42,7 +42,7 @@
     "@netless/window-manager": "1.0.7-beta.10",
     "@netless/window-manager-background-extend": "0.0.4",
     "@netless/window-manager-scrollbar-extend": "0.0.3",
-    "@wukong/custom-packages": "1.0.0-beta.84",
+    "@wukong/custom-packages": "1.0.0-beta.85",
     "@netless/slide": "1.4.41",
     "mobx": "^6.15.0",
     "buffer": "^6.0.3",
