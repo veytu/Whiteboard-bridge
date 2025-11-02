@@ -78,6 +78,7 @@ export class WKWindowManagerStoreBridge {
             windowManger.emitter.on("onMainViewMounted", () => {
                 this.wkWindowManagerStore?.initial();
                 this.sendMessageToNative(NativeWebBridgeMethod.onMainViewMounted, {});
+                this.onWriteChangeListener(windowManger.room.isWritable)
                 windowManger.emitter.off('onMainViewMounted', () => { });
             });
         },
