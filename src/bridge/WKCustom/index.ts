@@ -201,7 +201,14 @@ export class WKWindowManagerStoreBridge {
         this.customShowLog(`监听激光笔激活状态变化，active: ${active}`);
     }
 
-
+    /**
+     * 监听书写状态变化
+     * @param isWriting 是否正在书写
+     */
+    private onWriteChangeListener(isWriting: boolean) {
+        this.customShowLog(`监听可写权限改变监听: ${isWriting}`);
+        this.sendMessageToNative(NativeWebBridgeMethod.onWriteChangeStateChange, isWriting);
+    }
 
     /**
      * 注册所有监听
@@ -211,6 +218,7 @@ export class WKWindowManagerStoreBridge {
         this.wkWindowManagerStore?.scaleManager?.addScaleChangeListener(this.onScaleChangeListener)
         this.wkWindowManagerStore?.addPageChangeListener(this.onPageChangeListener)
         this.wkWindowManagerStore?.addMemberStateChangeListener(this.onMemberStateChangeListener)
+        this.wkWindowManagerStore?.addWriteChangeStateChangeListener(this.onWriteChangeListener)
         this.wkWindowManagerStore?.laserPointerManager?.addCallbackActiveListener(this.onLaserPointerActiveChangeListener)
         this.onBoxChangeListener({ maxMaxTopBox: undefined, maxNomalTopBox: undefined })
     }
@@ -223,6 +231,7 @@ export class WKWindowManagerStoreBridge {
         this.wkWindowManagerStore?.scaleManager?.removeScaleChangeListener(this.onScaleChangeListener)
         this.wkWindowManagerStore?.removePageChangeListener(this.onPageChangeListener)
         this.wkWindowManagerStore?.removeMemberStateChangeListener(this.onMemberStateChangeListener)
+        this.wkWindowManagerStore?.removeWriteChangeStateChangeListener(this.onWriteChangeListener)
         this.wkWindowManagerStore?.laserPointerManager?.removeCallbackActiveListener(this.onLaserPointerActiveChangeListener)
     }
 
@@ -413,4 +422,10 @@ export enum NativeWebBridgeMethod {
      * 参数：memberState
      */
     onMemberStateChange = "onMemberStateChange",
+
+    /**
+     * 监听书写状态变化
+     * 参数：isWriting
+     */
+    onWriteChangeStateChange = "onWriteChangeStateChange",
 }
