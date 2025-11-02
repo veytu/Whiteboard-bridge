@@ -230,36 +230,6 @@ class SDKBridge {
             wkWindowManagerStoreBridge = new WKWindowManagerStoreBridge();
         }
         WKWindowManagerStore.registerAll(wkWindowManagerStoreBridge.wkWindowManagerStoreOptionsFuncs);
-        //挂载talkactive的消息接收监听
-        WindowManager.register({
-            kind: 'Talkative',
-            src: Talkative,
-            appOptions: {
-                debug: false,
-                onLocalMessage: (appId: string, event: Record<string, any>) => {
-                    logger('talkativeOnLocalMessage', event)
-                    const { data } = event
-                    if (data && (data as any)?.cwd) {
-                        call("wuKongOptions.receiveTalkActiveInfo", JSON.stringify(data));
-                    }
-                },
-                setReceivePostMessageFun: (fun: (message: unknown) => void) => {
-                    logger('talkativeReceivePostMessageFun', fun)
-                    //@ts-ignore
-                    window.postMessageToTalkActive = fun
-                },
-                //获取同步信息
-                getInfoSync: async (configInfo: string) => {
-                    //@ts-ignore
-                    logger('talkativeGetInfoSyncConfig', configInfo)
-                    const result = await (asyncCall("wuKongOptions.getInfoSync", configInfo) as Promise<string>)
-                    logger('talkativeGetInfoSyncResult', result)
-                    return new Promise((resolve) => {
-                        resolve(result);
-                    });
-                }
-            },
-        })
         const slideAppOptions = config.slideAppOptions || {} ;
         const slideKind = "Slide";
         WindowManager.register({

@@ -83,6 +83,8 @@ export class WKWindowManagerStoreBridge {
             });
         },
         setReceivePostMessageFun: function (_func: (message: unknown) => void): void {
+            //@ts-ignore
+            window.postMessageToTalkActive = _func
         }
     }
 
@@ -206,7 +208,7 @@ export class WKWindowManagerStoreBridge {
      * 监听书写状态变化
      * @param isWriting 是否正在书写
      */
-    private onWriteChangeListener(isWriting: boolean) {
+    private onWriteChangeListener = (isWriting: boolean) => {
         this.customShowLog(`监听可写权限改变监听: ${isWriting}`);
         this.sendMessageToNative(NativeWebBridgeMethod.onWriteChangeStateChange, isWriting);
     }
