@@ -92,7 +92,7 @@ export class WKWindowManagerStoreBridge {
         
         UserOptionsUtils.setCheckPermissionCallback((permission?: string[]) => {
             return new Promise(async (resolve) => {
-                const result = await this.receiveMessageFromNative(NativeWebBridgeMethod.getHavePermission, JSON.stringify(permission))
+                const result = await this.receiveMessageFromNative(NativeWebBridgeMethod.getHavePermission, permission)
                 if(result+'' === 'true') {
                     resolve(true)
                     this.customShowLog('getHavePermission', permission, result, '')

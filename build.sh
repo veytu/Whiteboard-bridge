@@ -32,8 +32,6 @@ git push
 
 #提交whiteboard-bridge-veytu git，切换到develop分支，提交并推送
 cd ../whiteboard-bridge-veytu
-git checkout develop
-git pull
 git add .
 git commit -m "update whiteboard-bridge-veytu"
 git push
