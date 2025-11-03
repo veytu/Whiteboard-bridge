@@ -1043,17 +1043,22 @@
   resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-plyr/-/app-plyr-0.2.6-beta.6.tgz#16864a0bb1317880c703e25884f86836f79cd092"
   integrity sha512-jfUdpUHsBpsllCzr6jZtuLE/WsS6ulo/0WfVBs8wh8DmBNSbOLRz9CPBNQxgUZNfEirFn3blSEIASaTigKDzFA==
 
-"@netless/app-presentation@0.1.9-beta.6":
-  version "0.1.9-beta.6"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-presentation/-/app-presentation-0.1.9-beta.6.tgz#e46c0421e47662130ea9f0dde793b03046551f72"
-  integrity sha512-yMoIzaByTfS6RPgpfezNFONwWIxkXlOd7O7/gWdod4u5Y4YqTI3k+C2C03Bi2tCoOiBnSTVcYOxvXpOP+7mS2g==
+"@netless/app-presentation@0.1.9-beta.8", "@netless/app-presentation@>=0.1.9-beta.8":
+  version "0.1.9-beta.8"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-presentation/-/app-presentation-0.1.9-beta.8.tgz#80c64ac3a32be5517660ede910a8f2c6d456c9ff"
+  integrity sha512-cBt5Y3wIfT3l/+hiAMJHQYkpQ6uSBuZAxy21W3RCp/zqf+KvaptzrCuO+R8wsLByCqIeSkoNQMIa9Zc93OFvwQ==
   dependencies:
     lodash "^4.17.21"
 
-"@netless/app-slide@0.2.85":
-  version "0.2.85"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-slide/-/app-slide-0.2.85.tgz#d30b6fdcb9947f2f385aba118b6ad317321e69a7"
-  integrity sha512-eHwmi4FpgI+PMgcaLasDxGTJENGsyDjqib1UwduqUECQScRr+Xxbfk/y6Vv+3Cm6GTk/yyFVAWQ0suEai1Sxjg==
+"@netless/app-slide@0.2.87-beta.0":
+  version "0.2.87-beta.0"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-slide/-/app-slide-0.2.87-beta.0.tgz#4ff0f00d2882582b7abbb0916c8e4df87a772936"
+  integrity sha512-DtJYg7INMgsGoGTl9I074FGAOiHVadGzuJ/I/f1fxZju9O6Lk68K3Ovunr058y7CKW5DbHdcHi70MO1LqB4u1g==
+
+"@netless/app-slide@>=0.2.87-beta.0":
+  version "0.2.88"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-slide/-/app-slide-0.2.88.tgz#7275b7543f0faab8f0d1a241a9eda183cf198df9"
+  integrity sha512-3gQN4ldhpUV85uGf40pBf1mhwtiB4lUUZdlj/ad7sEoexrG09EWXxW3j9LJzOPJIBWOvGtdvs6QWYB0V9NE0dA==
 
 "@netless/app-talkative@0.1.93-wukongBeta.5":
   version "0.1.93-wukongBeta.5"
@@ -1192,10 +1197,35 @@
   dependencies:
     lodash "^4.17.21"
 
+"@netless/window-manager-wheel-extend@0.0.3":
+  version "0.0.3"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/window-manager-wheel-extend/-/window-manager-wheel-extend-0.0.3.tgz#3ee89b31c85f744166760106200565394b0e1be5"
+  integrity sha512-DHqsQsgT9S0+tkU6ZjlGhxFgTPwppR2QgKbKJlX46aQJ6d4o1FLp0UxDuzK1SpQjJGuOd0qrDpjiww8a4jLx9Q==
+  dependencies:
+    lodash "^4.17.21"
+  optionalDependencies:
+    "@netless/app-presentation" ">=0.1.9-beta.8"
+    "@netless/app-slide" ">=0.2.87-beta.0"
+    "@netless/window-manager" ">=1.0.6"
+    white-web-sdk ">=2.16.53"
+
 "@netless/window-manager@1.0.7-beta.10":
   version "1.0.7-beta.10"
   resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/window-manager/-/window-manager-1.0.7-beta.10.tgz#2e6bbb344f4f4e49fd36a67f559f7ec748c0ba3f"
   integrity sha512-LBa0Jow3KUK1jUiIVimZdVmo8gdxrdI7dsNyk1zjlqJvqu8jloyY40zNgZ26HZ28eR4AFZuj09dEpA/sV3S8DQ==
+  dependencies:
+    "@juggle/resize-observer" "^3.3.1"
+    "@netless/telebox-insider" "0.3.0-beta.14"
+    emittery "^0.9.2"
+    lodash "^4.17.21"
+    p-retry "^4.6.1"
+    uuid "^7.0.3"
+    video.js ">=7"
+
+"@netless/window-manager@>=1.0.6":
+  version "1.0.8"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/window-manager/-/window-manager-1.0.8.tgz#01887b104f135298fd1a801e658b5adfba97b8a3"
+  integrity sha512-1e6u29CnKSkknfxLrNFI87UPqpSzkR/oV3h0L00mtmZlQb49fasVtmERzQZBEkUc4uQVvzP0B4KC/CLZcerOUQ==
   dependencies:
     "@juggle/resize-observer" "^3.3.1"
     "@netless/telebox-insider" "0.3.0-beta.14"
@@ -1435,9 +1465,9 @@
     "@types/node" "*"
 
 "@types/node@*", "@types/node@>=13.7.0":
-  version "24.9.2"
-  resolved "https://registry.npmjs.org/@types/node/-/node-24.9.2.tgz#90ded2422dbfcafcf72080f28975adc21366148d"
-  integrity sha512-uWN8YqxXxqFMX2RqGOrumsKeti4LlmIMIyV0lgut4jx7KQBcBiW6vkDtIBvHnHIquwNfJhk8v2OtmO8zXWHfPA==
+  version "24.10.0"
+  resolved "https://registry.npmjs.org/@types/node/-/node-24.10.0.tgz#6b79086b0dfc54e775a34ba8114dcc4e0221f31f"
+  integrity sha512-qzQZRBqkFsYyaSWXuEHc2WR9c0a0CXwiE5FWUvn7ZM+vdy1uZLfCunD38UzhuB7YN/J11ndbDBcTmOdxJo9Q7A==
   dependencies:
     undici-types "~7.16.0"
 
@@ -1736,15 +1766,16 @@
   resolved "https://registry.npmjs.org/@webpack-cli/serve/-/serve-1.7.0.tgz#e1993689ac42d2b16e9194376cfb6753f6254db1"
   integrity sha512-oxnCNGj88fL+xzV+dacXs44HcDwf1ovs3AuEzvP7mqXw7fQntqIhQ1BRmynh4qEKQSSSRSWVyXRjmTbZIX9V2Q==
 
-"@wukong/custom-packages@1.0.0-beta.89":
-  version "1.0.0-beta.89"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@wukong/custom-packages/-/@wukong/custom-packages-1.0.0-beta.89.tgz#bfca64129ea08711e2d9d9521ddc3d8c3d992ec5"
-  integrity sha512-G1L6PFLAGw5vTrL+7cvYcCX2CRahGhKKg/69TwOHGWBELe9isksA3XbJVirNU8dAX5Th3tjWliduOiY4WwIRdg==
+"@wukong/custom-packages@1.0.0-beta.91":
+  version "1.0.0-beta.91"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@wukong/custom-packages/-/@wukong/custom-packages-1.0.0-beta.91.tgz#fa6bb9075f4c7d5e7e35d3537c4aa897b33a9f3b"
+  integrity sha512-iM7hPbyQEuaRX4vtywJSaw2IMB6XfTfLtkXa6owF6cqbwLKTossY8K1tAmFx7+AmouLFGwFIXM1UJ0SXhEtMVg==
   dependencies:
     "@netless/app-iframe-bridge" "0.0.4-wukongBeta.1"
     "@netless/app-plyr" "0.2.6-beta.6"
-    "@netless/app-presentation" "0.1.9-beta.6"
+    "@netless/app-presentation" "0.1.9-beta.8"
     "@netless/app-talkative" "0.1.93-wukongBeta.5"
+    "@netless/window-manager-wheel-extend" "0.0.3"
     color-string "^1.7.0"
     html2canvas "^1.4.1"
     jspdf "^2.5.2"
@@ -3224,9 +3255,9 @@ entities@^2.0.0:
   integrity sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A==
 
 envinfo@^7.7.3:
-  version "7.19.0"
-  resolved "https://registry.npmjs.org/envinfo/-/envinfo-7.19.0.tgz#b4b4507a27e9900b0175f556167fd3a95f8623f1"
-  integrity sha512-DoSM9VyG6O3vqBf+p3Gjgr/Q52HYBBtO3v+4koAxt1MnWr+zEnxE+nke/yXS4lt2P4SYCHQ4V3f1i88LQVOpAw==
+  version "7.20.0"
+  resolved "https://registry.npmjs.org/envinfo/-/envinfo-7.20.0.tgz#3fd9de69fb6af3e777a017dfa033676368d67dd7"
+  integrity sha512-+zUomDcLXsVkQ37vUqWBvQwLaLlj8eZPSi61llaEFAVBY5mhcXdaSw1pSJVl4yTYD5g/gEfpNl28YYk4IPvrrg==
 
 es-abstract@^1.22.1, es-abstract@^1.23.5, es-abstract@^1.23.6, es-abstract@^1.23.9, es-abstract@^1.24.0:
   version "1.24.0"
@@ -7290,7 +7321,7 @@ which@^2.0.1:
   dependencies:
     isexe "^2.0.0"
 
-white-web-sdk@2.16.53:
+white-web-sdk@2.16.53, white-web-sdk@>=2.16.53:
   version "2.16.53"
   resolved "https://registry.npmjs.org/white-web-sdk/-/white-web-sdk-2.16.53.tgz#25d7885f1d5d69243b428b426c72ef9664b0c4ac"
   integrity sha512-ACYemnxcCyWu5TKgbIIwa2I4MMmmYOwbZVqAtBZDnV++eT1iTtRES8CBhwKqJSUPrVqR0elz7E5vre7EXl6rzA==
