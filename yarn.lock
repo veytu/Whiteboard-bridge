@@ -1060,10 +1060,10 @@
   resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-talkative/-/@netless/app-talkative-0.1.93-wukongBeta.5.tgz#ab7a9aefb4f486bdf41c3cd1ab978149f48a62b6"
   integrity sha512-jvKPoD158ley4o//VBnUJ2Cp+UgrQydRUenBSHDZIs7muaPR7cybIO7CTcdxAuDDkX5zVN5Ur2W+WDlOCMhE4A==
 
-"@netless/appliance-plugin@1.1.22-beta.14":
-  version "1.1.22-beta.14"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/appliance-plugin/-/appliance-plugin-1.1.22-beta.14.tgz#169ca44bc68aa12fa2a0865095bcf68d45bca5b0"
-  integrity sha512-AmruW5XniLSyepzW4jDm6ZXL6c3AI7h4v/br0i0tbFztmYi+EGDlmKkg+fhOWXJ3QScnt2iTUiKx5zHfcpVFTg==
+"@netless/appliance-plugin@1.1.23":
+  version "1.1.23"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/appliance-plugin/-/appliance-plugin-1.1.23.tgz#f2f548e4ca9ed56d2c1f22b4908de4b106c05806"
+  integrity sha512-ThLWQ1Kjj8rY5HLmouyGh8k9SeWHKWk3ewfHVzuWv/+1c/rlzp+QEE5WE+DHnxo4jUEdSoCvLf2r0xR8A812fA==
   dependencies:
     clipper-lib "^6.4.2"
     eventemitter2 "^6.4.9"
@@ -1761,10 +1761,10 @@
   resolved "https://registry.npmjs.org/@webpack-cli/serve/-/serve-1.7.0.tgz#e1993689ac42d2b16e9194376cfb6753f6254db1"
   integrity sha512-oxnCNGj88fL+xzV+dacXs44HcDwf1ovs3AuEzvP7mqXw7fQntqIhQ1BRmynh4qEKQSSSRSWVyXRjmTbZIX9V2Q==
 
-"@wukong/custom-packages@1.0.0-beta.94":
-  version "1.0.0-beta.94"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@wukong/custom-packages/-/@wukong/custom-packages-1.0.0-beta.94.tgz#813bcc71eeaf367819566c95e9baf61c3b5ae1f5"
-  integrity sha512-5/XF9oj0/e7qSE+VYNsLfhNCM9U1mT0Fs7UQS17jnZpUUCEnY4LLk03Jzq+5zPIvr9hIuS6A0rsy4wPhIBbXnA==
+"@wukong/custom-packages@1.0.0-beta.95":
+  version "1.0.0-beta.95"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@wukong/custom-packages/-/@wukong/custom-packages-1.0.0-beta.95.tgz#40885eca02255ced2139f5be57bb0655ff1bbc51"
+  integrity sha512-Q5SBhCNCgXGf6WL7RnByRkgGThf/8Ja+bENccJTGL9ozqTT38MFxUdjiogvHbsionx8FrNcRNMNlzMItl8GPpA==
   dependencies:
     "@netless/app-iframe-bridge" "0.0.4-wukongBeta.1"
     "@netless/app-plyr" "0.2.6-beta.7"
@@ -2332,9 +2332,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001751:
-  version "1.0.30001753"
-  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001753.tgz#419f8fc9bab6f1a1d10d9574d0b3374f823c5b00"
-  integrity sha512-Bj5H35MD/ebaOV4iDLqPEtiliTN29qkGtEHCwawWn4cYm+bPJM2NsaP30vtZcnERClMzp52J4+aw2UNbK4o+zw==
+  version "1.0.30001754"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001754.tgz#7758299d9a72cce4e6b038788a15b12b44002759"
+  integrity sha512-x6OeBXueoAceOmotzx3PO4Zpt4rzpeIFsSr6AAePTZxSkXiYDUmpypEl7e2+8NCd9bD7bXjqyef8CJYPC1jfxg==
 
 canvg@^3.0.6:
   version "3.0.11"
@@ -4960,9 +4960,9 @@ mimic-fn@^2.1.0:
   integrity sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==
 
 min-document@^2.19.0:
-  version "2.19.0"
-  resolved "https://registry.npmjs.org/min-document/-/min-document-2.19.0.tgz#7bd282e3f5842ed295bb748cdd9f1ffa2c824685"
-  integrity sha512-9Wy1B3m3f66bPPmU5hdA4DR4PB2OfDU/+GS3yAB7IQozE3tqXaVv2zOjgla7MEGSRv95+ILmOuvhLkOK6wJtCQ==
+  version "2.19.1"
+  resolved "https://registry.npmjs.org/min-document/-/min-document-2.19.1.tgz#7083ad4bc8879a6eba6516688e9f5d91d32e2d23"
+  integrity sha512-8lqe85PkqQJzIcs2iD7xW/WSxcncC3/DPVbTOafKNJDIMXwGfwXS350mH4SJslomntN2iYtFBuC0yNO3CEap6g==
   dependencies:
     dom-walk "^0.1.0"
 
