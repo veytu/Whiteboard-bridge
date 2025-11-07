@@ -1038,10 +1038,10 @@
   resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-iframe-bridge/-/@netless/app-iframe-bridge-0.0.4-wukongBeta.1.tgz#9d14b5446c7d92cd1c1a811ffc4f67decc29ca0f"
   integrity sha512-CApXwgxqfXE+yEkaCMogJ5fx4qocMWlfj5oPZ+VGTRp5tYHegFTbsMEpdotz+OLvbjBtVyEMRXFYwiZVC9jV1Q==
 
-"@netless/app-plyr@0.2.6-beta.6":
-  version "0.2.6-beta.6"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-plyr/-/app-plyr-0.2.6-beta.6.tgz#16864a0bb1317880c703e25884f86836f79cd092"
-  integrity sha512-jfUdpUHsBpsllCzr6jZtuLE/WsS6ulo/0WfVBs8wh8DmBNSbOLRz9CPBNQxgUZNfEirFn3blSEIASaTigKDzFA==
+"@netless/app-plyr@0.2.6-beta.7":
+  version "0.2.6-beta.7"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-plyr/-/app-plyr-0.2.6-beta.7.tgz#c35775f2aace6dcc26e0efffd3a8ad460913abcb"
+  integrity sha512-wxdviMSyhfMs/E7aqBfh30QuOt61/9G7uPf5CKBmPnM4qpagvX+79nEaBUdttlke4aVPm0RBInhc52znZfx2Fg==
 
 "@netless/app-presentation@0.1.9-beta.8", "@netless/app-presentation@>=0.1.9-beta.8":
   version "0.1.9-beta.8"
@@ -1050,25 +1050,20 @@
   dependencies:
     lodash "^4.17.21"
 
-"@netless/app-slide@0.2.87-beta.0":
-  version "0.2.87-beta.0"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-slide/-/app-slide-0.2.87-beta.0.tgz#4ff0f00d2882582b7abbb0916c8e4df87a772936"
-  integrity sha512-DtJYg7INMgsGoGTl9I074FGAOiHVadGzuJ/I/f1fxZju9O6Lk68K3Ovunr058y7CKW5DbHdcHi70MO1LqB4u1g==
-
-"@netless/app-slide@>=0.2.87-beta.0":
-  version "0.2.88"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-slide/-/app-slide-0.2.88.tgz#7275b7543f0faab8f0d1a241a9eda183cf198df9"
-  integrity sha512-3gQN4ldhpUV85uGf40pBf1mhwtiB4lUUZdlj/ad7sEoexrG09EWXxW3j9LJzOPJIBWOvGtdvs6QWYB0V9NE0dA==
+"@netless/app-slide@0.2.89", "@netless/app-slide@>=0.2.87-beta.0":
+  version "0.2.89"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-slide/-/app-slide-0.2.89.tgz#248a402fa2cd9b70c0d7d21b301b61070631af31"
+  integrity sha512-WFE99nCqT/lzbSB2DOS0PxoAjeWzc3iWTGQfxir83bigbkfzQM5J9J5jp2pdMgfvmc/9u6F02WY0Klf+1ZiK/A==
 
 "@netless/app-talkative@0.1.93-wukongBeta.5":
   version "0.1.93-wukongBeta.5"
   resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-talkative/-/@netless/app-talkative-0.1.93-wukongBeta.5.tgz#ab7a9aefb4f486bdf41c3cd1ab978149f48a62b6"
   integrity sha512-jvKPoD158ley4o//VBnUJ2Cp+UgrQydRUenBSHDZIs7muaPR7cybIO7CTcdxAuDDkX5zVN5Ur2W+WDlOCMhE4A==
 
-"@netless/appliance-plugin@1.1.22-beta.14":
-  version "1.1.22-beta.14"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/appliance-plugin/-/appliance-plugin-1.1.22-beta.14.tgz#169ca44bc68aa12fa2a0865095bcf68d45bca5b0"
-  integrity sha512-AmruW5XniLSyepzW4jDm6ZXL6c3AI7h4v/br0i0tbFztmYi+EGDlmKkg+fhOWXJ3QScnt2iTUiKx5zHfcpVFTg==
+"@netless/appliance-plugin@1.1.23":
+  version "1.1.23"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/appliance-plugin/-/appliance-plugin-1.1.23.tgz#f2f548e4ca9ed56d2c1f22b4908de4b106c05806"
+  integrity sha512-ThLWQ1Kjj8rY5HLmouyGh8k9SeWHKWk3ewfHVzuWv/+1c/rlzp+QEE5WE+DHnxo4jUEdSoCvLf2r0xR8A812fA==
   dependencies:
     clipper-lib "^6.4.2"
     eventemitter2 "^6.4.9"
@@ -1197,10 +1192,10 @@
   dependencies:
     lodash "^4.17.21"
 
-"@netless/window-manager-wheel-extend@0.0.3":
-  version "0.0.3"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/window-manager-wheel-extend/-/window-manager-wheel-extend-0.0.3.tgz#3ee89b31c85f744166760106200565394b0e1be5"
-  integrity sha512-DHqsQsgT9S0+tkU6ZjlGhxFgTPwppR2QgKbKJlX46aQJ6d4o1FLp0UxDuzK1SpQjJGuOd0qrDpjiww8a4jLx9Q==
+"@netless/window-manager-wheel-extend@0.0.5":
+  version "0.0.5"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/window-manager-wheel-extend/-/window-manager-wheel-extend-0.0.5.tgz#fb4fe33d2767a0c1aeb4920184d5551504b1ca6d"
+  integrity sha512-+Xt/9j1uZtow+7sJ4ZhyBKczY2zzVPr4r9uNfrOwoVEm+DJ7475zLTk7CVCo7dYUlQB2cXzUX9UrFnpPfv5uOQ==
   dependencies:
     lodash "^4.17.21"
   optionalDependencies:
@@ -1766,16 +1761,16 @@
   resolved "https://registry.npmjs.org/@webpack-cli/serve/-/serve-1.7.0.tgz#e1993689ac42d2b16e9194376cfb6753f6254db1"
   integrity sha512-oxnCNGj88fL+xzV+dacXs44HcDwf1ovs3AuEzvP7mqXw7fQntqIhQ1BRmynh4qEKQSSSRSWVyXRjmTbZIX9V2Q==
 
-"@wukong/custom-packages@1.0.0-beta.92":
-  version "1.0.0-beta.92"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@wukong/custom-packages/-/@wukong/custom-packages-1.0.0-beta.92.tgz#d2bebe9b1c48f44951de39446cae21df6586bfb1"
-  integrity sha512-kIYtJCko297RKxvJQ5GWG5IrGxj6yYNBn4t9IRQVx7bJLKU041ZQS4QJWYYMmviYnkicn/xVhrxf4Gmh1mQ/+Q==
+"@wukong/custom-packages@1.0.0-beta.95":
+  version "1.0.0-beta.95"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@wukong/custom-packages/-/@wukong/custom-packages-1.0.0-beta.95.tgz#40885eca02255ced2139f5be57bb0655ff1bbc51"
+  integrity sha512-Q5SBhCNCgXGf6WL7RnByRkgGThf/8Ja+bENccJTGL9ozqTT38MFxUdjiogvHbsionx8FrNcRNMNlzMItl8GPpA==
   dependencies:
     "@netless/app-iframe-bridge" "0.0.4-wukongBeta.1"
-    "@netless/app-plyr" "0.2.6-beta.6"
+    "@netless/app-plyr" "0.2.6-beta.7"
     "@netless/app-presentation" "0.1.9-beta.8"
     "@netless/app-talkative" "0.1.93-wukongBeta.5"
-    "@netless/window-manager-wheel-extend" "0.0.3"
+    "@netless/window-manager-wheel-extend" "0.0.5"
     color-string "^1.7.0"
     html2canvas "^1.4.1"
     jspdf "^2.5.2"
@@ -2128,9 +2123,9 @@ base64-js@^1.3.1:
   integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
 
 baseline-browser-mapping@^2.8.19:
-  version "2.8.23"
-  resolved "https://registry.npmjs.org/baseline-browser-mapping/-/baseline-browser-mapping-2.8.23.tgz#cd43e17eff5cbfb67c92153e7fe856cf6d426421"
-  integrity sha512-616V5YX4bepJFzNyOfce5Fa8fDJMfoxzOIzDCZwaGL8MKVpFrXqfNUoIpRn9YMI5pXf/VKgzjB4htFMsFKKdiQ==
+  version "2.8.25"
+  resolved "https://registry.npmjs.org/baseline-browser-mapping/-/baseline-browser-mapping-2.8.25.tgz#947dc6f81778e0fa0424a2ab9ea09a3033e71109"
+  integrity sha512-2NovHVesVF5TXefsGX1yzx1xgr7+m9JQenvz6FQY3qd+YXkKkYiv+vTCc7OriP9mcDZpTC5mAOYN4ocd29+erA==
 
 batch@0.6.1:
   version "0.6.1"
@@ -2337,9 +2332,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001751:
-  version "1.0.30001753"
-  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001753.tgz#419f8fc9bab6f1a1d10d9574d0b3374f823c5b00"
-  integrity sha512-Bj5H35MD/ebaOV4iDLqPEtiliTN29qkGtEHCwawWn4cYm+bPJM2NsaP30vtZcnERClMzp52J4+aw2UNbK4o+zw==
+  version "1.0.30001754"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001754.tgz#7758299d9a72cce4e6b038788a15b12b44002759"
+  integrity sha512-x6OeBXueoAceOmotzx3PO4Zpt4rzpeIFsSr6AAePTZxSkXiYDUmpypEl7e2+8NCd9bD7bXjqyef8CJYPC1jfxg==
 
 canvg@^3.0.6:
   version "3.0.11"
@@ -3197,9 +3192,9 @@ ee-first@1.1.1:
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
 electron-to-chromium@^1.5.238:
-  version "1.5.244"
-  resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.5.244.tgz#b9b61e3d24ef4203489951468614f2a360763820"
-  integrity sha512-OszpBN7xZX4vWMPJwB9illkN/znA8M36GQqQxi6MNy9axWxhOfJyZZJtSLQCpEFLHP2xK33BiWx9aIuIEXVCcw==
+  version "1.5.245"
+  resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.5.245.tgz#81aea81adf1e06b6f703b4b35ac6d543421d0fd9"
+  integrity sha512-rdmGfW47ZhL/oWEJAY4qxRtdly2B98ooTJ0pdEI4jhVLZ6tNf8fPtov2wS1IRKwFJT92le3x4Knxiwzl7cPPpQ==
 
 emittery@^0.9.2:
   version "0.9.2"
@@ -4965,9 +4960,9 @@ mimic-fn@^2.1.0:
   integrity sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==
 
 min-document@^2.19.0:
-  version "2.19.0"
-  resolved "https://registry.npmjs.org/min-document/-/min-document-2.19.0.tgz#7bd282e3f5842ed295bb748cdd9f1ffa2c824685"
-  integrity sha512-9Wy1B3m3f66bPPmU5hdA4DR4PB2OfDU/+GS3yAB7IQozE3tqXaVv2zOjgla7MEGSRv95+ILmOuvhLkOK6wJtCQ==
+  version "2.19.1"
+  resolved "https://registry.npmjs.org/min-document/-/min-document-2.19.1.tgz#7083ad4bc8879a6eba6516688e9f5d91d32e2d23"
+  integrity sha512-8lqe85PkqQJzIcs2iD7xW/WSxcncC3/DPVbTOafKNJDIMXwGfwXS350mH4SJslomntN2iYtFBuC0yNO3CEap6g==
   dependencies:
     dom-walk "^0.1.0"
 
@@ -6728,9 +6723,9 @@ terser-webpack-plugin@^5.3.0, terser-webpack-plugin@^5.3.11:
     terser "^5.31.1"
 
 terser@^5.10.0, terser@^5.31.1:
-  version "5.44.0"
-  resolved "https://registry.npmjs.org/terser/-/terser-5.44.0.tgz#ebefb8e5b8579d93111bfdfc39d2cf63879f4a82"
-  integrity sha512-nIVck8DK+GM/0Frwd+nIhZ84pR/BX7rmXMfYwyg+Sri5oGVE99/E3KvXqpC2xHFxyqXyGHTKBSioxxplrO4I4w==
+  version "5.44.1"
+  resolved "https://registry.npmjs.org/terser/-/terser-5.44.1.tgz#e391e92175c299b8c284ad6ded609e37303b0a9c"
+  integrity sha512-t/R3R/n0MSwnnazuPpPNVO60LX0SKL45pyl9YlvxIdkH0Of7D5qM2EVe+yASRIlY5pZ73nclYJfNANGWPwFDZw==
   dependencies:
     "@jridgewell/source-map" "^0.3.3"
     acorn "^8.15.0"
