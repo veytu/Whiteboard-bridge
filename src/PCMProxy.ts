@@ -74,7 +74,7 @@ export class PCMProxy {
         );
         this.audioContext.resume();
         // create a looping timer.
-        this.resumeTimer = setInterval(() => {
+        this.resumeTimer = window.setInterval(() => {
           if (this.audioContext.state === "suspended") {
             console.log(
               "[pcm] resume timer: audioContext.state is suspended, resuming"
@@ -84,7 +84,7 @@ export class PCMProxy {
         }, 3000);
       } else {
         if (this.resumeTimer) {
-          clearInterval(this.resumeTimer);
+          window.clearInterval(this.resumeTimer);
           this.resumeTimer = null;
         }
       }
