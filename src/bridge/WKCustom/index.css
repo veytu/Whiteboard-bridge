@@ -4,7 +4,7 @@
 .telebox-footer-wrap{
     display: none !important;
 }
-.plyr__control{
+.plyr__control[data-plyr="play"]{
     display: none !important;
 }
 .telebox-max-titlebar{
