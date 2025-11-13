@@ -95,25 +95,28 @@ export class PCMProxy {
     const source = this.audioContext.createMediaElementSource(mediaElement);
     source.connect(this.gainNode);
 
-    // 根据audio元素的muted状态控制gainNode
+    // 根据audio元素的muted状态和volume大小控制gainNode
     const updateGain = () => {
       if (mediaElement.muted) {
         this.gainNode.gain.value = 0;
         console.log(`[pcm] media element muted, setting gain to 0`);
       } else {
-        this.gainNode.gain.value = 1;
-        console.log(`[pcm] media element unmuted, setting gain to 1`);
+        // 使用audio元素的volume值（范围0-1）
+        this.gainNode.gain.value = mediaElement.volume;
+        console.log(
+          `[pcm] media element volume changed, setting gain to ${mediaElement.volume}`
+        );
       }
     };
 
     // 初始化时设置gain
     updateGain();
 
-    // 监听volumechange事件（包括muted状态变化）
+    // 监听volumechange事件（包括muted状态和volume大小变化）
     mediaElement.addEventListener("volumechange", updateGain);
 
     console.log(
-      `[pcm] connect media element tag: ${mediaElement.tagName}, src: ${mediaElement.src}, muted: ${mediaElement.muted}, connectedSource: ${source}`
+      `[pcm] connect media element tag: ${mediaElement.tagName}, src: ${mediaElement.src}, muted: ${mediaElement.muted}, volume: ${mediaElement.volume}, connectedSource: ${source}`
     );
     return source;
   }
