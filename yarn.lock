@@ -1185,6 +1185,14 @@
   dependencies:
     lodash "^4.17.21"
 
+"@netless/window-manager-paste-extend@0.0.4":
+  version "0.0.4"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/window-manager-paste-extend/-/window-manager-paste-extend-0.0.4.tgz#a3f3944f355e589b01fc33ce839843f691aba511"
+  integrity sha512-KRZJhSTaCbtRj+94KRyIQMETN9yUI+OrUuPlKrMIJrc26jwIzF6k9VeVGPZEIDzxPbL9YzGUWBt7BXtZZQIElQ==
+  dependencies:
+    lodash "^4.17.21"
+    xss "^1.0.15"
+
 "@netless/window-manager-scrollbar-extend@0.0.3":
   version "0.0.3"
   resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/window-manager-scrollbar-extend/-/window-manager-scrollbar-extend-0.0.3.tgz#dcda12055b2bb235485355aa59ddfed768acd6d2"
@@ -1460,9 +1468,9 @@
     "@types/node" "*"
 
 "@types/node@*", "@types/node@>=13.7.0":
-  version "24.10.0"
-  resolved "https://registry.npmjs.org/@types/node/-/node-24.10.0.tgz#6b79086b0dfc54e775a34ba8114dcc4e0221f31f"
-  integrity sha512-qzQZRBqkFsYyaSWXuEHc2WR9c0a0CXwiE5FWUvn7ZM+vdy1uZLfCunD38UzhuB7YN/J11ndbDBcTmOdxJo9Q7A==
+  version "24.10.1"
+  resolved "https://registry.npmjs.org/@types/node/-/node-24.10.1.tgz#91e92182c93db8bd6224fca031e2370cef9a8f01"
+  integrity sha512-GNWcUTRBgIRJD5zj+Tq0fKOJ5XZajIiBroOF0yvj2bSU1WvNdYS/dn9UxwsujGW4JX06dnHyjV2y9rRaybH0iQ==
   dependencies:
     undici-types "~7.16.0"
 
@@ -1761,16 +1769,15 @@
   resolved "https://registry.npmjs.org/@webpack-cli/serve/-/serve-1.7.0.tgz#e1993689ac42d2b16e9194376cfb6753f6254db1"
   integrity sha512-oxnCNGj88fL+xzV+dacXs44HcDwf1ovs3AuEzvP7mqXw7fQntqIhQ1BRmynh4qEKQSSSRSWVyXRjmTbZIX9V2Q==
 
-"@wukong/custom-packages@1.0.0-beta.99":
-  version "1.0.0-beta.99"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@wukong/custom-packages/-/@wukong/custom-packages-1.0.0-beta.99.tgz#95eb96ab675b804804ae670f34c7be390c277054"
-  integrity sha512-7ZkMft8gAdstoF0uCcHA5ikeMoL/7aj78pNpgt1Hqdgt7qWV9uXKGfN5yS2PPrnx55P2yQD8B3L6yw/nQToNfg==
+"@wukong/custom-packages@1.0.0-beta.101":
+  version "1.0.0-beta.101"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@wukong/custom-packages/-/@wukong/custom-packages-1.0.0-beta.101.tgz#e8975c707bda6bc0c35e1244e85e697421d01e32"
+  integrity sha512-dOUEriPqohs/A3nZgC0tlgiu7ng8rt44wW8a4TboE0nFDwVyuaVgyHXWSTchQSg7fZuP8xNoPzYBWUYmhhkFDQ==
   dependencies:
     "@netless/app-iframe-bridge" "0.0.4-wukongBeta.1"
     "@netless/app-plyr" "0.2.7"
     "@netless/app-presentation" "0.1.9-beta.8"
     "@netless/app-talkative" "0.1.93-wukongBeta.5"
-    "@netless/window-manager-wheel-extend" "0.0.5"
     color-string "^1.7.0"
     html2canvas "^1.4.1"
     jspdf "^2.5.2"
@@ -2123,9 +2130,9 @@ base64-js@^1.3.1:
   integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
 
 baseline-browser-mapping@^2.8.25:
-  version "2.8.25"
-  resolved "https://registry.npmjs.org/baseline-browser-mapping/-/baseline-browser-mapping-2.8.25.tgz#947dc6f81778e0fa0424a2ab9ea09a3033e71109"
-  integrity sha512-2NovHVesVF5TXefsGX1yzx1xgr7+m9JQenvz6FQY3qd+YXkKkYiv+vTCc7OriP9mcDZpTC5mAOYN4ocd29+erA==
+  version "2.8.27"
+  resolved "https://registry.npmjs.org/baseline-browser-mapping/-/baseline-browser-mapping-2.8.27.tgz#d15ab8face053137f8eb4c028455024787515d5d"
+  integrity sha512-2CXFpkjVnY2FT+B6GrSYxzYf65BJWEqz5tIRHCvNsZZ2F3CmsCB37h8SpYgKG7y9C4YAeTipIPWG7EmFmhAeXA==
 
 batch@0.6.1:
   version "0.6.1"
@@ -4960,9 +4967,9 @@ mimic-fn@^2.1.0:
   integrity sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==
 
 min-document@^2.19.0:
-  version "2.19.1"
-  resolved "https://registry.npmjs.org/min-document/-/min-document-2.19.1.tgz#7083ad4bc8879a6eba6516688e9f5d91d32e2d23"
-  integrity sha512-8lqe85PkqQJzIcs2iD7xW/WSxcncC3/DPVbTOafKNJDIMXwGfwXS350mH4SJslomntN2iYtFBuC0yNO3CEap6g==
+  version "2.19.2"
+  resolved "https://registry.npmjs.org/min-document/-/min-document-2.19.2.tgz#f95db44639eaae3ac8ea85ae6809ae85ff7e3b81"
+  integrity sha512-8S5I8db/uZN8r9HSLFVWPdJCvYOejMcEC82VIzNUc6Zkklf/d1gg2psfE79/vyhWOj4+J8MtwmoOz3TmvaGu5A==
   dependencies:
     dom-walk "^0.1.0"
 
