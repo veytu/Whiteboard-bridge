@@ -1050,20 +1050,25 @@
   dependencies:
     lodash "^4.17.21"
 
-"@netless/app-slide@0.2.89", "@netless/app-slide@>=0.2.87-beta.0":
+"@netless/app-slide@0.2.89":
   version "0.2.89"
   resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-slide/-/app-slide-0.2.89.tgz#248a402fa2cd9b70c0d7d21b301b61070631af31"
   integrity sha512-WFE99nCqT/lzbSB2DOS0PxoAjeWzc3iWTGQfxir83bigbkfzQM5J9J5jp2pdMgfvmc/9u6F02WY0Klf+1ZiK/A==
+
+"@netless/app-slide@>=0.2.87-beta.0":
+  version "0.2.90"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-slide/-/app-slide-0.2.90.tgz#4f7b5a3935011a567db9a21ba2194fd898377747"
+  integrity sha512-B1RBVxBEMj4ihsvBvPRi7gmCRsMPsyf8E1NesQtForiP1xB/OMW6egxuoCpfXKW3lfXtruCaePJ6u1JjBvj+Ug==
 
 "@netless/app-talkative@0.1.93-wukongBeta.5":
   version "0.1.93-wukongBeta.5"
   resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-talkative/-/@netless/app-talkative-0.1.93-wukongBeta.5.tgz#ab7a9aefb4f486bdf41c3cd1ab978149f48a62b6"
   integrity sha512-jvKPoD158ley4o//VBnUJ2Cp+UgrQydRUenBSHDZIs7muaPR7cybIO7CTcdxAuDDkX5zVN5Ur2W+WDlOCMhE4A==
 
-"@netless/appliance-plugin@1.1.23":
-  version "1.1.23"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/appliance-plugin/-/appliance-plugin-1.1.23.tgz#f2f548e4ca9ed56d2c1f22b4908de4b106c05806"
-  integrity sha512-ThLWQ1Kjj8rY5HLmouyGh8k9SeWHKWk3ewfHVzuWv/+1c/rlzp+QEE5WE+DHnxo4jUEdSoCvLf2r0xR8A812fA==
+"@netless/appliance-plugin@1.1.24":
+  version "1.1.24"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/appliance-plugin/-/appliance-plugin-1.1.24.tgz#1bf3dc00d300470270ed5626bc633ce252af560f"
+  integrity sha512-bte8cNhRDSmcOVziOcjPHXJy9bSDDjVDaK+6NDtT+/WEvLSdomls6m+xucDcXs5oubDED9S0IlBbDTbdEebPfw==
   dependencies:
     clipper-lib "^6.4.2"
     eventemitter2 "^6.4.9"
@@ -1769,10 +1774,10 @@
   resolved "https://registry.npmjs.org/@webpack-cli/serve/-/serve-1.7.0.tgz#e1993689ac42d2b16e9194376cfb6753f6254db1"
   integrity sha512-oxnCNGj88fL+xzV+dacXs44HcDwf1ovs3AuEzvP7mqXw7fQntqIhQ1BRmynh4qEKQSSSRSWVyXRjmTbZIX9V2Q==
 
-"@wukong/custom-packages@1.0.0-beta.103":
-  version "1.0.0-beta.103"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@wukong/custom-packages/-/@wukong/custom-packages-1.0.0-beta.103.tgz#8d2a61e6096fb38bfeb110c5cc1daef76d318208"
-  integrity sha512-0hdlncF9UMdrDw4V18J4oj7DfPwcmCaMvx8CL9ul+zj3b8mxj23IpCV2XczKLfwcE7mcY/e+mKUO+m7ADzXp1A==
+"@wukong/custom-packages@1.0.0-beta.104":
+  version "1.0.0-beta.104"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@wukong/custom-packages/-/@wukong/custom-packages-1.0.0-beta.104.tgz#f5edcdd8e81e9ea2efdfef580dee585338d660ed"
+  integrity sha512-C8ZcYVF1VRFxafZsh69GWQyDc/xjDpD1vi38ZWqaP5XBNHPod2IMsDU/NTrON5qZA3e6tvC62t57eEQ6cFiOJg==
   dependencies:
     "@netless/app-iframe-bridge" "0.0.4-wukongBeta.1"
     "@netless/app-plyr" "0.2.7"
@@ -3703,9 +3708,9 @@ forever-agent@~0.6.1:
   integrity sha512-j0KLYPhm6zeac4lz3oJ3o65qvgQCcPubiyotZrXqEaG4hNagNYO8qdlUrX5vwqv9ohqeT/Z3j6+yW067yWWdUw==
 
 form-data@^4.0.0:
-  version "4.0.4"
-  resolved "https://registry.npmjs.org/form-data/-/form-data-4.0.4.tgz#784cdcce0669a9d68e94d11ac4eea98088edd2c4"
-  integrity sha512-KrGhL9Q4zjj0kiUt5OO4Mr/A/jlI2jDYs5eHBpYHPcBEVSiipAvn2Ko2HnPe20rmcuuvMHNdZFp+4IlGTMF0Ow==
+  version "4.0.5"
+  resolved "https://registry.npmjs.org/form-data/-/form-data-4.0.5.tgz#b49e48858045ff4cbf6b03e1805cebcad3679053"
+  integrity sha512-8RipRLol37bNs2bhoV67fiTEvdTrbMUYcFTiy3+wuuOnUog2QBHCZWXDRijWQfAkhBj2Uf5UnVaiWwA5vdd82w==
   dependencies:
     asynckit "^0.4.0"
     combined-stream "^1.0.8"
