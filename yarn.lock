@@ -1050,15 +1050,10 @@
   dependencies:
     lodash "^4.17.21"
 
-"@netless/app-slide@0.2.89":
-  version "0.2.89"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-slide/-/app-slide-0.2.89.tgz#248a402fa2cd9b70c0d7d21b301b61070631af31"
-  integrity sha512-WFE99nCqT/lzbSB2DOS0PxoAjeWzc3iWTGQfxir83bigbkfzQM5J9J5jp2pdMgfvmc/9u6F02WY0Klf+1ZiK/A==
-
-"@netless/app-slide@>=0.2.87-beta.0":
-  version "0.2.90"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-slide/-/app-slide-0.2.90.tgz#4f7b5a3935011a567db9a21ba2194fd898377747"
-  integrity sha512-B1RBVxBEMj4ihsvBvPRi7gmCRsMPsyf8E1NesQtForiP1xB/OMW6egxuoCpfXKW3lfXtruCaePJ6u1JjBvj+Ug==
+"@netless/app-slide@0.2.91", "@netless/app-slide@>=0.2.87-beta.0":
+  version "0.2.91"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-slide/-/app-slide-0.2.91.tgz#9aafadaa8abd038536e5f50f29910244eb9b155d"
+  integrity sha512-VsbPqYeM+IR6cK5yu2+mqFvV8aK5UZ0x78Yg1gmfDaJWvq4Gdzl2o4qom6hyTR+EhgCtZJzTpK3h3oGm3szxRQ==
 
 "@netless/app-talkative@0.1.93-wukongBeta.5":
   version "0.1.93-wukongBeta.5"
@@ -1774,10 +1769,10 @@
   resolved "https://registry.npmjs.org/@webpack-cli/serve/-/serve-1.7.0.tgz#e1993689ac42d2b16e9194376cfb6753f6254db1"
   integrity sha512-oxnCNGj88fL+xzV+dacXs44HcDwf1ovs3AuEzvP7mqXw7fQntqIhQ1BRmynh4qEKQSSSRSWVyXRjmTbZIX9V2Q==
 
-"@wukong/custom-packages@1.0.0-beta.104":
-  version "1.0.0-beta.104"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@wukong/custom-packages/-/@wukong/custom-packages-1.0.0-beta.104.tgz#f5edcdd8e81e9ea2efdfef580dee585338d660ed"
-  integrity sha512-C8ZcYVF1VRFxafZsh69GWQyDc/xjDpD1vi38ZWqaP5XBNHPod2IMsDU/NTrON5qZA3e6tvC62t57eEQ6cFiOJg==
+"@wukong/custom-packages@1.0.0-beta.105":
+  version "1.0.0-beta.105"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@wukong/custom-packages/-/@wukong/custom-packages-1.0.0-beta.105.tgz#cb1ce0fbfc68ff5c0fb5f93e96af35d3bb4bfb85"
+  integrity sha512-NsMNV3isNJ5uhwWKTmxaO3XV9Ee8IlqsxDfK8REWbCAfiox2cfApe7rTTiDFMtT5QmukydBbrCFxQ8RTLF/3Nw==
   dependencies:
     "@netless/app-iframe-bridge" "0.0.4-wukongBeta.1"
     "@netless/app-plyr" "0.2.7"
@@ -2843,9 +2838,9 @@ csso@^4.2.0:
     css-tree "^1.1.2"
 
 csstype@^3.0.2:
-  version "3.2.2"
-  resolved "https://registry.npmjs.org/csstype/-/csstype-3.2.2.tgz#6800c4d295639fbe03ac1f3df642e58506f9b65a"
-  integrity sha512-D80T+tiqkd/8B0xNlbstWDG4x6aqVfO52+OlSUNIdkTvmNw0uQpJLeos2J/2XvpyidAFuTPmpad+tUxLndwj6g==
+  version "3.2.3"
+  resolved "https://registry.npmjs.org/csstype/-/csstype-3.2.3.tgz#ec48c0f3e993e50648c86da559e2610995cf989a"
+  integrity sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==
 
 custom-event-polyfill@^1.0.7:
   version "1.0.7"

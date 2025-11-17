@@ -23,7 +23,7 @@
   "dependencies": {
     "@netless/app-iframe-bridge": "0.0.4-wukongBeta.1",
     "@netless/app-plyr": "0.2.7",
-    "@netless/app-slide": "0.2.89",
+    "@netless/app-slide": "0.2.91",
     "@netless/app-presentation": "0.1.9-beta.8",
     "@netless/app-talkative": "0.1.93-wukongBeta.5",
     "@netless/appliance-plugin": "1.1.24",
@@ -44,7 +44,7 @@
     "@netless/window-manager-scrollbar-extend": "0.0.3",
     "@netless/window-manager-wheel-extend": "0.0.5",
     "@netless/window-manager-paste-extend": "0.0.5",
-    "@wukong/custom-packages": "1.0.0-beta.104",
+    "@wukong/custom-packages": "1.0.0-beta.105",
     "@netless/slide": "1.4.41",
     "mobx": "^6.15.0",
     "buffer": "^6.0.3",
