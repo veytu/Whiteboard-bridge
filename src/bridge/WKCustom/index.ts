@@ -174,8 +174,6 @@ export class WKWindowManagerStoreBridge {
         );
         if (isInitialized) {
           this.registerListenerAll();
-        } else {
-          this.unregisterListenerAll();
         }
       }
     );
