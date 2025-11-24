@@ -85,6 +85,11 @@ export class WKWindowManagerStoreBridge {
     onWindowManagerInit: (windowManger: WindowManager) => {
       window.manager = windowManger;
       windowManger.emitter.on("onMainViewMounted", () => {
+        if (this.wkWindowManagerStore) {
+          this.wkWindowManagerStore.destroy();
+          this.wkWindowManagerStore = undefined;
+          this._initWKWindowManagerStore();
+        }
         this.wkWindowManagerStore?.initial();
         this.sendMessageToNative(NativeWebBridgeMethod.onMainViewMounted, {});
         this.onWriteChangeListener(windowManger.room.isWritable);
@@ -149,14 +154,16 @@ export class WKWindowManagerStoreBridge {
       });
     });
     this.customShowLog("初始化UserOptionsUtils完成");
-    if (this.wkWindowManagerStore) {
-      return;
-    }
+
+    this._initWKWindowManagerStore();
     this.customShowLog("开始注册WKWindowManager");
     // WKWindowManagerStore.registerAll(this._wkWindowManagerStoreOptionsFuncs)
     this.customShowLog(
       "注册WKWindowManager完成，开始初始化WKWindowManagerStore"
     );
+  }
+
+  private _initWKWindowManagerStore() {
     this.wkWindowManagerStore = new WKWindowManagerStore(
       () => {
         return window.manager as WindowManager;
@@ -167,8 +174,6 @@ export class WKWindowManagerStoreBridge {
         );
         if (isInitialized) {
           this.registerListenerAll();
-        } else {
-          this.unregisterListenerAll();
         }
       }
     );
