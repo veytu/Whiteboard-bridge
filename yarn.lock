@@ -1770,10 +1770,10 @@
   resolved "https://registry.npmjs.org/@webpack-cli/serve/-/serve-1.7.0.tgz#e1993689ac42d2b16e9194376cfb6753f6254db1"
   integrity sha512-oxnCNGj88fL+xzV+dacXs44HcDwf1ovs3AuEzvP7mqXw7fQntqIhQ1BRmynh4qEKQSSSRSWVyXRjmTbZIX9V2Q==
 
-"@wukong/custom-packages@1.0.0-beta.108":
-  version "1.0.0-beta.108"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@wukong/custom-packages/-/@wukong/custom-packages-1.0.0-beta.108.tgz#79e82a532be0579bcc4db9adca7e140657b5e845"
-  integrity sha512-lVWtb65ILz1CknAp7CKyfhIdx2Eskspmt+g+Ix4vlhPeYkJokqJzx15Yty9UruSLKZA7GYp1qri+lJ8Vh+p7ww==
+"@wukong/custom-packages@1.0.0-beta.109":
+  version "1.0.0-beta.109"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@wukong/custom-packages/-/@wukong/custom-packages-1.0.0-beta.109.tgz#4352dd7c30502745261abcb588b435cc6305d73a"
+  integrity sha512-CmN3F1piYyZke7Qj/HFmbhWgwsNpHiTuJpGQ5RUG/w3vk1pZ/VLgLOcL1dsAJpbVn4/i1BMINKpTy9Xh6NesKQ==
   dependencies:
     "@netless/app-iframe-bridge" "0.0.4-wukongBeta.1"
     "@netless/app-plyr" "0.2.7"
@@ -3200,9 +3200,9 @@ ee-first@1.1.1:
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
 electron-to-chromium@^1.5.249:
-  version "1.5.259"
-  resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.5.259.tgz#d4393167ec14c5a046cebaec3ddf3377944ce965"
-  integrity sha512-I+oLXgpEJzD6Cwuwt1gYjxsDmu/S/Kd41mmLA3O+/uH2pFRO/DvOjUyGozL8j3KeLV6WyZ7ssPwELMsXCcsJAQ==
+  version "1.5.260"
+  resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.5.260.tgz#73f555d3e9b9fd16ff48fc406bbad84efa9b86c7"
+  integrity sha512-ov8rBoOBhVawpzdre+Cmz4FB+y66Eqrk6Gwqd8NGxuhv99GQ8XqMAr351KEkOt7gukXWDg6gJWEMKgL2RLMPtA==
 
 emittery@^0.9.2:
   version "0.9.2"
