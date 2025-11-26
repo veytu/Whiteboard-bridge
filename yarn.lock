@@ -1770,10 +1770,10 @@
   resolved "https://registry.npmjs.org/@webpack-cli/serve/-/serve-1.7.0.tgz#e1993689ac42d2b16e9194376cfb6753f6254db1"
   integrity sha512-oxnCNGj88fL+xzV+dacXs44HcDwf1ovs3AuEzvP7mqXw7fQntqIhQ1BRmynh4qEKQSSSRSWVyXRjmTbZIX9V2Q==
 
-"@wukong/custom-packages@1.0.0-beta.109":
-  version "1.0.0-beta.109"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@wukong/custom-packages/-/@wukong/custom-packages-1.0.0-beta.109.tgz#4352dd7c30502745261abcb588b435cc6305d73a"
-  integrity sha512-CmN3F1piYyZke7Qj/HFmbhWgwsNpHiTuJpGQ5RUG/w3vk1pZ/VLgLOcL1dsAJpbVn4/i1BMINKpTy9Xh6NesKQ==
+"@wukong/custom-packages@1.0.0-beta.110":
+  version "1.0.0-beta.110"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@wukong/custom-packages/-/@wukong/custom-packages-1.0.0-beta.110.tgz#a54eca3323923bdc9d6fbd5ac3ca865e2325b002"
+  integrity sha512-ECKu+H+IRS4+6qb5AON+PGDJP/3xnaDN5Z5SCWiYp0SPvW9QilwAoswwXrFzvX+SEFxfpn4ewNSwYcGavIJJjA==
   dependencies:
     "@netless/app-iframe-bridge" "0.0.4-wukongBeta.1"
     "@netless/app-plyr" "0.2.7"
@@ -5085,9 +5085,9 @@ no-case@^3.0.4:
     tslib "^2.0.3"
 
 node-forge@^1:
-  version "1.3.1"
-  resolved "https://registry.npmjs.org/node-forge/-/node-forge-1.3.1.tgz#be8da2af243b2417d5f646a770663a92b7e9ded3"
-  integrity sha512-dPEtOeMvF9VMcYV/1Wb8CPoVAXtp6MKMlcbAt4ddqmGqUJ6fQZFXkNZNkNlfevtNkGtaSoXf/vNNNSvgrdXwtA==
+  version "1.3.2"
+  resolved "https://registry.npmjs.org/node-forge/-/node-forge-1.3.2.tgz#d0d2659a26eef778bf84d73e7f55c08144ee7750"
+  integrity sha512-6xKiQ+cph9KImrRh0VsjH2d8/GXA4FIMlgU4B757iI1ApvcyA9VlouP0yZJha01V+huImO+kKMU7ih+2+E14fw==
 
 node-releases@^2.0.27:
   version "2.0.27"
