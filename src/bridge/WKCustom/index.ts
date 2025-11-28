@@ -90,7 +90,7 @@ export class WKWindowManagerStoreBridge {
           this.wkWindowManagerStore = undefined;
           this._initWKWindowManagerStore();
         }
-        this.wkWindowManagerStore?.initial();
+        this.wkWindowManagerStore.initial();
         this.sendMessageToNative(NativeWebBridgeMethod.onMainViewMounted, {});
         this.onWriteChangeListener(windowManger.room.isWritable);
         windowManger.emitter.off("onMainViewMounted", () => {});
@@ -155,9 +155,11 @@ export class WKWindowManagerStoreBridge {
     });
     this.customShowLog("初始化UserOptionsUtils完成");
 
+    WKWindowManagerStore.registerAll(this.wkWindowManagerStoreOptionsFuncs);
+
     this._initWKWindowManagerStore();
+
     this.customShowLog("开始注册WKWindowManager");
-    // WKWindowManagerStore.registerAll(this._wkWindowManagerStoreOptionsFuncs)
     this.customShowLog(
       "注册WKWindowManager完成，开始初始化WKWindowManagerStore"
     );
@@ -175,7 +177,9 @@ export class WKWindowManagerStoreBridge {
         if (isInitialized) {
           this.registerListenerAll();
         }
-      }
+      },
+      // todo 目前移动端只有学生，后续需要动态传入
+      { role: 3 }
     );
     this.customShowLog("初始化WKWindowManagerStore完成");
     //设置白板打开课件的筛选条件
