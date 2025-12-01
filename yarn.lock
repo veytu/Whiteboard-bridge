@@ -1050,10 +1050,10 @@
   dependencies:
     lodash "^4.17.21"
 
-"@netless/app-slide@0.2.91", "@netless/app-slide@>=0.2.87-beta.0":
-  version "0.2.91"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-slide/-/app-slide-0.2.91.tgz#9aafadaa8abd038536e5f50f29910244eb9b155d"
-  integrity sha512-VsbPqYeM+IR6cK5yu2+mqFvV8aK5UZ0x78Yg1gmfDaJWvq4Gdzl2o4qom6hyTR+EhgCtZJzTpK3h3oGm3szxRQ==
+"@netless/app-slide@0.2.92", "@netless/app-slide@>=0.2.87-beta.0":
+  version "0.2.92"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@netless/app-slide/-/app-slide-0.2.92.tgz#13b898a00e6a0e14849122be890e0c76de0e66a4"
+  integrity sha512-3c81d1oPNFIEYKey4tno1gIaGXdxQhSux0U0XzIgRgs9HiOd+GQXp4Horj9e+/fcw7/Vyqcgce2bm72JJuDwDw==
 
 "@netless/app-talkative@0.1.93-wukongBeta.7":
   version "0.1.93-wukongBeta.7"
@@ -1757,10 +1757,10 @@
   resolved "https://registry.npmjs.org/@webpack-cli/serve/-/serve-1.7.0.tgz#e1993689ac42d2b16e9194376cfb6753f6254db1"
   integrity sha512-oxnCNGj88fL+xzV+dacXs44HcDwf1ovs3AuEzvP7mqXw7fQntqIhQ1BRmynh4qEKQSSSRSWVyXRjmTbZIX9V2Q==
 
-"@wukong/custom-packages@1.0.0-beta.111":
-  version "1.0.0-beta.111"
-  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@wukong/custom-packages/-/@wukong/custom-packages-1.0.0-beta.111.tgz#6944d5327c87e337ea034015d61ba8484e845293"
-  integrity sha512-NMKGTQDrHh2tFtSEPlAA3cUX9ptvZlIFfYlIhW5WRQAbmcCWPPwrC/LoGqbNtfDdfWfafZXvrUvOYu251zsbjA==
+"@wukong/custom-packages@1.0.0-beta.112":
+  version "1.0.0-beta.112"
+  resolved "https://packages.aliyun.com/68cbe28edec569489f6d65a5/npm/veytu/@wukong/custom-packages/-/@wukong/custom-packages-1.0.0-beta.112.tgz#b2d13b30e057c6a652c791b1792a4ca910b40d1e"
+  integrity sha512-Cv6VbV0cTH8/bQ8fGmtRg+7/XtU8KdwuyUzPb8Jhew89KePDO7ovkc1nvYRno176RZEndLtwzbfK8Bg2UFlfXg==
   dependencies:
     "@netless/app-iframe-bridge" "0.0.4-wukongBeta.1"
     "@netless/app-plyr" "0.2.7"
