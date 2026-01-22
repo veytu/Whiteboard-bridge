@@ -225,6 +225,7 @@ class SDKBridge {
                 appOptions: v.appOptions,
                 src: v.variable ? window[v.variable] : v.url,
             });
+            console.log("asdfasdfas", v.kind);
         }
         if(!wkWindowManagerStoreBridge) {
             wkWindowManagerStoreBridge = new WKWindowManagerStoreBridge();
@@ -246,10 +247,12 @@ class SDKBridge {
                 return SlideApp;
             },
         });
+        console.log("asdfasdfas", slideKind);
         WindowManager.register({
             kind: Plyr.kind,
             src:  Plyr,
         });
+        console.log("asdfasdfas", Plyr.kind);
         // WindowManager.register({
         //     kind: 'Talkative',
         //     src: Talkative,
@@ -624,6 +627,7 @@ class SDKBridge {
                     src: src,
                     appOptions: para.appOptions
                 }).then(() => responseCallback());
+                console.log("asdfasdfas", para.kind);
             }
         } else if (para.url) {
             WindowManager.register({
@@ -631,6 +635,7 @@ class SDKBridge {
                 src: para.url,
                 appOptions: para.appOptions
             }).then(() => responseCallback());
+            console.log("asdfasdfas", para.kind);
         }
     }
 
